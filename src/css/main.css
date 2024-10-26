@@ -13,3 +13,7 @@
 body {
   @apply font-poppins;
 }
+
+.huge {
+  background-color: #ff6347; /* Example custom background color */
+}
