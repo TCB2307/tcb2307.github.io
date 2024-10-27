@@ -1,37 +1,44 @@
-import ava02 from "../images/ava02.png";
-import icon from "../images/icon.png";
+import logo02 from "../images/logo02.png";
+import phone from "../images/phone.png";
+import email from "../images/email.png";
+import linkedin from "../images/linkedin.png";
+
+function ContactCard({ img, text }) {
+  return (
+    <div className="w-full flex">
+      <div className="flex justify-center items-center">
+        <div>
+          <img src={img} alt="logo" className="w-16 h-auto" />
+        </div>
+      </div>
+      <div className="flex items-center pl-4 text-white text-3xl font-light">
+        {text}
+      </div>
+    </div>
+  );
+}
 
 function Footer() {
   return (
-    <div>
-      <div className="h-[17rem] flex justify-center">
-        <div className="bg-[#D6D6D6] w-4/5 relative top-28 rounded-[1.3rem] flex">
-          <div className="w-1/2">
-            <div className="px-10 pt-10">
-              <div className="font-semibold text-[2rem] pb-4">
-                Let's have a chat
-              </div>
-              <div className="pb-6">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt
-              </div>
-              <div className="flex">
-                <div className="bg-[#F4F4F4] flex px-4 py-2  cursor-pointer rounded-[0.5rem]">
-                  <div className="font-semibold text-[1.3rem] flex items-center pr-3">
-                    Contact Me
-                  </div>
-                  <div className="">
-                    <img src={icon} alt="icon" className="w-10" />
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div className="h-full bg-[#14BECA]">
+      <div className="flex flex-col">
+        <div className="flex justify-center pt-44">
+          <img src={logo02} alt="logo02" className="w-20" />
+        </div>
+        <div className="flex justify-center text-center ">
+          <div className=" w-80 text-white font-light text-3xl pt-10 pb-20">
+            Lorem ipsum dolor sit amet, consectetur
           </div>
-          <div className="w-1/2">
-            <div className="flex  items-end justify-center h-full">
-              <img src={ava02} alt="ava02" className="w-60" />
-            </div>
+        </div>
+        <div className="flex justify-center pb-20">
+          <div className="w-4/5 flex pl-24">
+            <ContactCard img={phone} text="+61 415240402" />
+            <ContactCard img={email} text="Personal Email" />
+            <ContactCard img={linkedin} text="LinkedIn Profile" />
           </div>
+        </div>
+        <div className="flex justify-center text-white font-extralight text-xs pb-6">
+          © 2024 Made by Andy Bui
         </div>
       </div>
     </div>
