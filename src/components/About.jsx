@@ -9,7 +9,7 @@ function ColumnText({ text01, text02 }) {
 
 export default function About() {
   return (
-    <div className="bg-[#14BECA] flex flex-col space-y-4 px-12 py-10 text-white">
+    <div className="bg-[#14BECA] flex flex-col space-y-4 px-12 pt-10 text-white pb-[8rem]">
       <div className="flex justify-center text-10 text-5xl font-medium pt-4">
         About myself
       </div>
