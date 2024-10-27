@@ -1,6 +1,6 @@
 import logo from "../images/logo.svg";
 
-export default function Header() {
+export default function Navigation() {
   return (
     <div className="flex border-b-2 pb-4 pt-4 bg-white">
       <div className="flex w-2/6 items-center">
