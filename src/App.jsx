@@ -1,19 +1,13 @@
 import Homepage from "./components/Homepage";
-import Header from "./components/Header";
-import About from "./components/About";
-import Skill from "./components/Skill";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./Layout";
 
 export default function App() {
   return (
-    <div>
-      <div className="sticky top-0">
-        <Header />
-      </div>
-      <Homepage />
-      <div className="absolute">
-        <About />
-        <Skill />
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path="" element={<Homepage />} />
+      </Route>
+    </Routes>
   );
 }
