@@ -11,7 +11,7 @@ export default function Navigation() {
         <div className="flex w-2/6 items-center">
           <img src={logo} alt="logo" className="w-10 ml-8 py-[7px]" />
         </div>
-        <div className="w-4/6 mr-[8rem] lg:mr-10">
+        <div className="w-4/6 mr-[8rem] md:mr-10">
           <div className="flex justify-between text-2xl font-semibold text-[#14BECA] md:hidden">
             <div className="flex items-center justify-center px-5 py-3">
               About
