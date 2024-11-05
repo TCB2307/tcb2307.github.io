@@ -9,6 +9,11 @@ export default {
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'], // Replace 'YourCustomFont' with your font name
       },
+      screens: {
+        'sm': { 'max': '576px' },
+        'md': { 'max': '960px' },
+        'lg': { 'max': '1440px' },
+      }
     },
   },
   plugins: [],

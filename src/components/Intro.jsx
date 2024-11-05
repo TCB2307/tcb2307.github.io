@@ -6,10 +6,12 @@ import Button from "./Button";
 function Intro() {
   return (
     <div>
-      <div className="px-12 pt-8">
-        <div className="flex py-8 space-x-14">
+      <div className="px-12 pt-8 md:hidden">
+        <div className="flex py-8">
           <div className="flex flex-col space-y-4 w-3/5 pt-10 pl-14">
-            <div className="text-7xl font-semibold py-4">I'm Andy</div>
+            <div className="text-7xl md:text-5x1 font-semibold py-4">
+              I'm Andy
+            </div>
             <div className="flex space-x-5 font-normal text-5xl pt-4">
               <div className="px-5 py-3 border-2 text-[#14BECA]">Digital</div>
               <div className="flex items-center font-medium">&</div>
