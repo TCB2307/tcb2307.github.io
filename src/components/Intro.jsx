@@ -6,16 +6,21 @@ import Button from "./Button";
 function Intro() {
   return (
     <div>
-      <div className="px-12 pt-8 md:hidden">
+      <div className="px-12 pt-8 ">
+        <div className="text-1xl justify-center items-center pt-10 hidden md:flex">
+          <img src={myAva} alt="Avatar" className="w-80" />
+        </div>
         <div className="flex py-8">
-          <div className="flex flex-col space-y-4 w-3/5 pt-10 pl-14">
+          <div className="flex flex-col space-y-4 w-3/5 pt-10 pl-14 mac:w-[70%] md:w-[100%] mac:pl-6 md:pl-[0px]">
             <div className="text-7xl md:text-5x1 font-semibold py-4">
               I'm Andy
             </div>
-            <div className="flex space-x-5 font-normal text-5xl pt-4">
-              <div className="px-5 py-3 border-2 text-[#14BECA]">Digital</div>
+            <div className="flex space-x-5 font-normal text-[2.8rem] pt-4 lg:text-[2rem]">
+              <div className="px-5 py-3 border-2 text-[#14BECA] lg:py-2">
+                Digital
+              </div>
               <div className="flex items-center font-medium">&</div>
-              <div className="px-5 py-3 border-2 text-[#14BECA]">
+              <div className="px-5 py-3 border-2 text-[#14BECA] lg:py-2">
                 Frontend Developer
               </div>
             </div>
@@ -37,7 +42,7 @@ function Intro() {
               <img src={arrow} alt="arrow" className="w-5" />
             </div>
           </div>
-          <div className="text-1xl w-2/5 flex justify-center items-center pt-10">
+          <div className="text-1xl w-2/5 flex justify-center items-center pt-10 mac:w-[30%] md:hidden">
             <img src={myAva} alt="Avatar" className="w-80" />
           </div>
         </div>
