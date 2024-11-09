@@ -15,7 +15,7 @@ export default {
         'm': { 'min': '471px', 'max': '960px' },  // Targets screens between 577px and 960px
         'md': { 'max': '960px' },  // Targets screens between 577px and 960px
         'mac': { 'min': '961px', 'max': '1200px' },
-        'lg': { 'min': '471px', 'max': '1450px' },
+        'lg': { 'min': '471px', 'max': '1490px' },
       }
     },
   },

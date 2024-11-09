@@ -28,7 +28,7 @@ function Work() {
           Work
         </div>
         <div className="flex justify-center bottom-20">
-          <div className="w-5/6">
+          <div className=" max-w-[1540px]">
             <div className="flex">
               <WorkDetail />
               <WorkDetail />
