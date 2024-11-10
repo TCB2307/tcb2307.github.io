@@ -9,7 +9,7 @@ export default function Navigation() {
     <div className="relative h-[90px]">
       <div className="flex pb-4 pt-4 bg-white relative border-b-2 z-[101]">
         <div className="flex w-2/6 items-center">
-          <img src={logo} alt="logo" className="w-10 ml-8 py-[7px]" />
+          <img src={logo} alt="logo" className="w-10 ml-8 py-[7px] h-[56px]" />
         </div>
         <div className="w-4/6 mr-[8rem] md:mr-10">
           <div className="flex justify-between text-2xl font-semibold text-[#14BECA] md:hidden">
