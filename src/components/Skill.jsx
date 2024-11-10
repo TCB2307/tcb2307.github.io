@@ -26,7 +26,7 @@ function SkillDetail({
 
   return (
     <div
-      className={`${borderCss} border-black border-opacity-10 w-full h-[36rem] skill-sm:border-r-0 skill-sm:${borderCssSm} skill-sm:h-[30rem]`}
+      className={`${borderCss} border-black border-opacity-10 w-full h-[36rem] skill-m:border-r-0 skill-m:${borderCssSm} skill-m:h-[30rem]`}
     >
       <div className="flex justify-center mt-16">
         <img src={img} alt="logo" className="w-20" />
@@ -62,7 +62,7 @@ function SkillDetail({
 
 export default function Skill() {
   return (
-    <div className="flex justify-center relative bottom-20 skill:mx-10 skill-text:mx-4 skill-sm:mx-6">
+    <div className="flex justify-center relative bottom-20 skill:mx-10 skill-text:mx-4 skill-m:mx-6">
       <div className="bg-[#FFFEFE] max-w-[1500px] border-black rounded-3xl border-2 border-opacity-10 skill:max-w-[1300px]">
         <div className="flex items-center skill-sm:block phone:block">
           <SkillDetail
