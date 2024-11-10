@@ -16,6 +16,12 @@ export default {
         'md': { 'max': '960px' },  // Targets screens between 577px and 960px
         'mac': { 'min': '961px', 'max': '1200px' },
         'lg': { 'min': '471px', 'max': '1490px' },
+        'about': { 'min': '961px', 'max': '1250px' },
+        'project': { 'max': '550px' },
+        'skill': { 'min': '961px', 'max': '1600px' },
+        'skill-text': { 'min': '701px', 'max': '960px' },
+        'skill-sm': { 'min': '471px', 'max': '800px' },
+        'skill-m': { 'max': '800px' },
       }
     },
   },
