@@ -22,6 +22,7 @@ export default {
         'skill-text': { 'min': '701px', 'max': '960px' },
         'skill-sm': { 'min': '471px', 'max': '800px' },
         'skill-m': { 'max': '800px' },
+        'footer-all': { 'max': '1300px' },
       }
     },
   },

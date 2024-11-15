@@ -5,13 +5,13 @@ import linkedin from "../images/linkedin.png";
 
 function ContactCard({ img, text }) {
   return (
-    <div className="w-full flex">
+    <div className="w-full flex md:justify-center md:mb-9 md:gap-5">
       <div className="flex justify-center items-center">
         <div>
           <img src={img} alt="logo" className="w-16 h-auto" />
         </div>
       </div>
-      <div className="flex items-center pl-4 text-white text-3xl font-light">
+      <div className="flex items-center pl-4 text-white text-3xl font-light footer-all:text-[1.6rem]">
         {text}
       </div>
     </div>
@@ -31,7 +31,7 @@ function Footer() {
           </div>
         </div>
         <div className="flex justify-center pb-20">
-          <div className="w-4/5 flex pl-24">
+          <div className="w-4/5 flex pl-24 footer-all:pl-0 md:block">
             <ContactCard img={phone} text="+61 415240402" />
             <ContactCard img={email} text="Personal Email" />
             <ContactCard img={linkedin} text="LinkedIn Profile" />
