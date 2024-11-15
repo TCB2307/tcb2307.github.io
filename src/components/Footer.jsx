@@ -11,7 +11,7 @@ function ContactCard({ img, text }) {
           <img src={img} alt="logo" className="w-16 h-auto" />
         </div>
       </div>
-      <div className="flex items-center pl-4 text-white text-3xl font-light footer-all:text-[1.6rem]">
+      <div className="flex items-center pl-4 text-white text-3xl font-light footer-all:text-[1.6rem] footer-all:pr-4">
         {text}
       </div>
     </div>
