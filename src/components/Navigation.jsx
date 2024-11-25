@@ -4,7 +4,6 @@ import logo from "../images/logo.svg";
 
 export default function Navigation() {
   const [active, setActive] = React.useState("text");
-  console.log(active);
   return (
     <div className="relative h-[90px]">
       <div className="flex pb-4 pt-4 bg-white relative border-b-2 z-[101]">

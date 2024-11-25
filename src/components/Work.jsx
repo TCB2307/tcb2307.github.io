@@ -1,26 +1,48 @@
+import React from "react";
+import Overlay from "./overlay";
+import WorkDetail from "./WorkDetail";
 import img02 from "../images/img02.jpg";
-
-function WorkDetail() {
-  return (
-    <div className="flex flex-col w-11/12 skill-m:mx-[5%]">
-      <div className="flex justify-center skill-m:border-l-[1px] skill-m:border-r-[1px]">
-        <img src={img02} alt="logo" className="w-11/12 skill-m:w-full" />
-      </div>
-      <div className="flex justify-center text-4xl font-medium pb-2 pt-8 skill-m:pl-[5%] skill-m:pt-[8%] skill-m:pb-[3%] skill-m:border-l-[1px] skill-m:border-r-[1px]">
-        <div className="w-11/12 text-[1.3rem]">Website</div>
-      </div>
-      <div className="flex justify-center text-[0.9rem] font-light skill-m:pl-[5%] skill-m:pb-[10%] skill-m:border-l-[1px] skill-m:border-r-[1px] skill-m:border-b-[1px]">
-        <div className="w-11/12">
-          <div className="px-3 py-[6px] border-2 inline-block cursor-pointer">
-            VIEW PROJECT
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+import website from "../images/website.png";
+import email from "../images/email-icon.png";
+import banner from "../images/banner.png";
+import html from "../images/html.png";
+import css from "../images/css.png";
+import js from "../images/js.png";
+import react from "../images/react.png";
+import typescript from "../images/typescript.png";
+import tailwind from "../images/tailwind.png";
+import salesforce from "../images/salesforce.png";
+import gulp from "../images/gulp.png";
+import gsap from "../images/gsap.png";
+import figma from "../images/figma.png";
+import photoshop from "../images/photoshop.png";
 
 function Work() {
+  const [activeProject, setActiveProject] = React.useState(null);
+
+  const project = {
+    "Project 1": {
+      title: "Project 1",
+      tools: [js, react, typescript],
+    },
+    "Project 2": {
+      title: "Project 2",
+      tools: [tailwind, salesforce, gulp],
+    },
+    "Project 3": {
+      title: "Project 3",
+      tools: [gsap, figma, photoshop],
+    },
+  };
+
+  const handleShowOverlay = (projectName) => {
+    setActiveProject(project[projectName]);
+  };
+
+  const handleHideOverlay = () => {
+    setActiveProject(null);
+  };
+
   return (
     <div>
       <div className="pb-20 border-black border-opacity-20 border-b">
@@ -30,13 +52,34 @@ function Work() {
         <div className="flex justify-center bottom-20 skill:mx-5">
           <div className=" max-w-[1540px]">
             <div className="flex skill-sm:block phone:block">
-              <WorkDetail />
-              <WorkDetail />
-              <WorkDetail />
+              <WorkDetail
+                img={img02}
+                name="Project 1"
+                onShowOverlay={() => handleShowOverlay("Project 1")}
+              />
+              <WorkDetail
+                img={img02}
+                name="Project 2"
+                onShowOverlay={() => handleShowOverlay("Project 2")}
+              />
+              <WorkDetail
+                img={img02}
+                name="Project 3"
+                onShowOverlay={() => handleShowOverlay("Project 3")}
+              />
             </div>
           </div>
         </div>
       </div>
+
+      {/* Shared Overlay */}
+      {activeProject && (
+        <Overlay
+          title={activeProject.title}
+          tools={activeProject.tools}
+          onClose={handleHideOverlay}
+        />
+      )}
     </div>
   );
 }
