@@ -2,31 +2,25 @@ import React from "react";
 import Overlay from "./Overlay";
 import WorkDetail from "./WorkDetail";
 import img02 from "../images/img02.jpg";
-import js from "../images/js.png";
-import react from "../images/react.png";
-import typescript from "../images/typescript.png";
-import tailwind from "../images/tailwind.png";
-import salesforce from "../images/salesforce.png";
-import gulp from "../images/gulp.png";
-import gsap from "../images/gsap.png";
-import figma from "../images/figma.png";
-import photoshop from "../images/photoshop.png";
+import pte1 from "../images/pte/pte1.png";
+import pte2 from "../images/pte/pte2.png";
+import pte3 from "../images/pte/pte3.png";
 
 function Work() {
   const [activeProject, setActiveProject] = React.useState(null);
 
   const project = {
     "Project 1": {
-      title: "Project 1",
-      tools: [js, react, typescript],
+      title: "01. PTE Master",
+      tools: [pte1, pte2, pte3],
     },
     "Project 2": {
       title: "Project 2",
-      tools: [tailwind, salesforce, gulp],
+      tools: [pte1, pte2, pte3],
     },
     "Project 3": {
       title: "Project 3",
-      tools: [gsap, figma, photoshop],
+      tools: [pte1, pte2, pte3],
     },
   };
 
