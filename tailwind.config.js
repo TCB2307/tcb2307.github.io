@@ -27,6 +27,11 @@ export default {
         'proj-semi-lg': { 'min': '1101px', 'max': '1350px' },
         'proj-medium': { 'min': '901px', 'max': '1100px' },
         'proj-sm': { 'max': '900px' },
+        'proj-small': { 'min': '751px', 'max': '900px' },
+        'proj-semi-small': { 'min': '601px', 'max': '750px' },
+        'proj-very-small': { 'min': '501px', 'max': '600px' },
+        'proj-tiny': { 'min': '401px', 'max': '500px' },
+        'proj-very-tiny': { 'max': '400px' },
       }
     },
   },

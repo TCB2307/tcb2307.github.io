@@ -14,6 +14,9 @@ const Overlay = ({ title, onClose, tools }) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [isAnimating, setIsAnimating] = React.useState(false);
 
+  // Variables to track swipe gestures
+  const startX = React.useRef(0);
+
   // LEFT BUTTON
   const handleLeftButton = () => {
     if (isAnimating) return; // Prevent clicks if an animation is ongoing
@@ -126,6 +129,21 @@ const Overlay = ({ title, onClose, tools }) => {
     });
   };
 
+  // SWIPE HANDLING
+  const handleTouchStart = (e) => {
+    startX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    const endX = e.changedTouches[0].clientX;
+    const diffX = startX.current - endX;
+
+    if (Math.abs(diffX) > 50) {
+      if (diffX > 0) handleRightButton(); // Swipe Left
+      else handleLeftButton(); // Swipe Right
+    }
+  };
+
   useGSAP(() => {
     // Fade-in animation when component show
     gsap.fromTo(
@@ -172,15 +190,17 @@ const Overlay = ({ title, onClose, tools }) => {
             />
           </div>
           <div
-            className="flex justify-center relative w-full h-[600px] left-10 proj-lg:h-[550px] proj-semi-lg:h-[500px] proj-semi-lg:left-[2rem] proj-medium:h-[400px] proj-medium:left-[2rem] proj-sm:left-[2rem] proj-sm:h-[420px]"
+            className="flex justify-center relative w-full h-[600px] left-10 proj-lg:h-[550px] proj-semi-lg:h-[500px] proj-semi-lg:left-[2rem] proj-medium:h-[400px] proj-medium:left-[2rem] proj-sm:left-[2rem] proj-small:h-[420px] proj-semi-small:h-[350px] proj-very-small:h-[270px] proj-tiny:h-[230px] proj-very-tiny:h-[200px]"
             ref={containerImg}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
             {tools.map((tool, index) => (
               <img
                 key={index}
                 src={tool}
                 alt="logo"
-                className={`w-[90%] max-w-[1100px] aspect-[16/9] rounded-br-[50px] max-h-[550px] absolute border-2 border-gray-300 ${
+                className={`w-[90%] max-w-[1100px] aspect-[16/9] rounded-br-[50px] max-h-[550px] absolute border-2 border-gray-300 proj-sm:w-[85%] ${
                   index === 0
                     ? "translate-x-[-60px] translate-y-[50px] z-10"
                     : ""
@@ -199,34 +219,18 @@ const Overlay = ({ title, onClose, tools }) => {
             />
           </div>
         </div>
-        <div className="hidden proj-sm:flex justify-between mt-6">
-          <div className="hidden proj-sm:block">
-            <img
-              src={leftarrow}
-              className="w-14 cursor-pointer"
-              onClick={handleLeftButton}
-            />
-          </div>
-          <div className="hidden justify-end proj-sm:block">
-            <img
-              src={rightarrow}
-              className="w-14 cursor-pointer"
-              onClick={handleRightButton}
-            />
-          </div>
-        </div>
-        <div className="ml-[13%] w-[75%] mt-6 text-lg proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%]">
+        <div className="ml-[13%] w-[75%] mt-6 text-lg proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%] phone:text-base">
           <p>
             <span className="font-semibold">Skills: </span>React, Redux,
             Nest.js, HTML, CSS, Typescript, PostgreSQL, Docker Git
           </p>
         </div>
-        <div className="ml-[13%] w-[75%] text-lg mt-4 proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%]">
+        <div className="ml-[13%] w-[75%] text-lg mt-4 proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%] phone:text-base">
           PTE Master an automated online learning system that integrated AI
           technology, providing students with a comprehensive platform for
           improving their English skill in preparation for their PTE test.
         </div>
-        <div className="ml-[13%] text-lg mt-4 proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%]">
+        <div className="ml-[13%] text-lg mt-4 proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%] phone:text-base">
           <p>
             <span className="font-semibold">Link: </span>
             https://www.masterpte.com.au
