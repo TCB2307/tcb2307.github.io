@@ -9,7 +9,8 @@ function WorkDetail({ img, name, onShowOverlay }) {
 
   const handleMouseEnter = () => {
     gsap.to(imgRef.current, {
-      opacity: 0.5,
+      scale: 1.05,
+      rotation: 5,
       duration: 0.3,
       ease: "power2.out",
     });
@@ -17,7 +18,8 @@ function WorkDetail({ img, name, onShowOverlay }) {
 
   const handleMouseLeave = () => {
     gsap.to(imgRef.current, {
-      opacity: 1,
+      scale: 1,
+      rotation: 0,
       duration: 0.3,
       ease: "power2.out",
     });

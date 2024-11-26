@@ -29,8 +29,6 @@ const Overlay = ({ title, onClose, tools }) => {
     const prevTwoIndex = (currentIndex + 1) % totalImages; // Track the previous two img index
     const prevImg = containerImg.current.children[prevIndex];
     const prevTwoImg = containerImg.current.children[prevTwoIndex];
-    console.log(prevImg);
-    console.log(prevTwoImg);
     gsap.set(prevImg, { opacity: 0, x: -90, y: 50, zIndex: tools.length });
 
     // Adjust z-index for all images except the currentImg and nextImg

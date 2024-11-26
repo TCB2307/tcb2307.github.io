@@ -1,9 +1,124 @@
+import React from "react";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 import myAva from "../images/avatar.png";
 import arrow from "../images/arrow.svg";
 import img01 from "../images/img01.png";
 import Button from "./Button";
+import TypingEffect from "./TypingEffect";
+
+gsap.registerPlugin(useGSAP);
 
 function Intro() {
+  const type = React.useRef(); // Reference to the overlay container
+  const tag = React.useRef(); // Reference to the overlay container
+  const describe = React.useRef(); // Reference to the overlay container
+  const text = React.useRef(); // Reference to the overlay container
+  const cta = React.useRef(); // Reference to the overlay container
+  const copy01 = React.useRef(); // Reference to the overlay container
+  const copy02 = React.useRef(); // Reference to the overlay container
+
+  useGSAP(() => {
+    // Fade-in animation when component show
+    gsap.fromTo(
+      type.current,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.25,
+        ease: "none",
+        repeat: -1, // Repeat infinitely
+        yoyo: true, // Reverse the animation on each repeat
+      }
+    );
+
+    gsap.fromTo(
+      tag.current,
+      { opacity: 0, scale: 0.8 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        ease: "power2.inOut",
+        delay: 1.5,
+      }
+    );
+
+    gsap.fromTo(
+      describe.current,
+      { opacity: 0, y: -10 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.3,
+        ease: "none",
+        delay: 2.2,
+      }
+    );
+
+    gsap.fromTo(
+      text.current,
+      { opacity: 0, y: -10 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.3,
+        ease: "none",
+        delay: 2.4,
+      }
+    );
+
+    gsap.fromTo(
+      cta.current,
+      { opacity: 0, y: -10 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.3,
+        ease: "none",
+        delay: 2.4,
+      }
+    );
+  });
+
+  const handleHover = (ele) => {
+    // Clear previous animations and properties
+    gsap.killTweensOf(ele.current);
+    gsap.set(ele.current, { clearProps: "all" });
+    gsap.set(ele.current, {
+      backgroundColor: "#14BECA",
+      color: "#FFFFFF",
+      borderColor: "#14BECA",
+    });
+    gsap.to(ele.current, {
+      scaleX: 1.3,
+      scaleY: 0.9,
+      duration: 0.3, // Time for scaling
+    });
+    gsap.to(ele.current, {
+      scaleX: 1,
+      scaleY: 1,
+      duration: 0.8, // Time for scaling
+      ease: "elastic.out(0.8, 0.3)", // Bouncing effect for the scaling
+      delay: 0.3,
+    });
+  };
+
+  const handleLeave = (ele) => {
+    // Clear previous animations and properties
+    gsap.set(ele.current, {
+      backgroundColor: "#FFFFFF",
+      color: "#14BECA",
+      borderColor: "#e5e7eb",
+    });
+  };
+
+  // Usage for copy01 and copy02
+  const handleHover01 = () => handleHover(copy01);
+  const handleHover02 = () => handleHover(copy02);
+  const handleLeave01 = () => handleLeave(copy01);
+  const handleLeave02 = () => handleLeave(copy02);
+
   return (
     <div>
       <div className="px-12 pt-8 ">
@@ -12,19 +127,40 @@ function Intro() {
         </div>
         <div className="flex py-8">
           <div className="flex flex-col space-y-4 w-3/5 pt-10 pl-14 mac:w-[70%] md:w-[100%] mac:pl-6 md:pl-[0px] sm:pt-0">
-            <div className="text-7xl font-semibold py-4 m:text-6xl phone:text-6xl">
-              I'm Andy
+            <div className="text-7xl font-semibold py-4 m:text-6xl phone:text-5xl">
+              <span>
+                <TypingEffect text="I'm Andy" />
+              </span>
+              <span className="text-6xl translate-y-[-10px]" ref={type}>
+                _
+              </span>
             </div>
-            <div className="flex space-x-5 font-normal text-[2.8rem] pt-4 lg:text-[2rem] phone:text-[1.4rem] sm:flex-col sm:space-x-0 sm:space-y-6">
-              <div className="px-5 py-3 border-2 text-[#14BECA] lg:py-2 self-start">
+            <div
+              className="flex space-x-5 font-normal text-[2.8rem] pt-4 lg:text-[2rem] phone:text-[1.4rem] sm:flex-col sm:space-x-0 sm:space-y-6"
+              ref={tag}
+            >
+              <div
+                ref={copy01}
+                className="px-5 py-3 border-2 text-[#14BECA] lg:py-2 self-start cursor-default border-gray-200"
+                onMouseEnter={handleHover01}
+                onMouseLeave={handleLeave01}
+              >
                 Digital
               </div>
               <div className="flex items-center font-medium sm:hidden">&</div>
-              <div className="px-5 py-3 border-2 text-[#14BECA] lg:py-2 self-start">
+              <div
+                ref={copy02}
+                className="px-5 py-3 border-2 text-[#14BECA] lg:py-2 self-start cursor-default border-gray-200"
+                onMouseEnter={handleHover02}
+                onMouseLeave={handleLeave02}
+              >
                 Frontend Developer
               </div>
             </div>
-            <div className="text-[1.1rem] pt-5 phone:text-[1rem]">
+            <div
+              className="text-[1.1rem] pt-5 phone:text-[1rem] relative"
+              ref={describe}
+            >
               <span>
                 I design and build clean, simple solutions websites with
                 code.&nbsp;
@@ -33,12 +169,15 @@ function Intro() {
               Bringing ideas to life through thoughtful design is what I love
               most.
             </div>
-            <div className="flex space-x-4 text-xs pt-3 phone:text-[0.65rem]">
+            <div
+              className="flex space-x-4 text-xs pt-3 phone:text-[0.65rem]"
+              ref={text}
+            >
               <Button text="WEBSITES" />
               <Button text="EDMS" />
               <Button text="ANIMATIONS" />
             </div>
-            <div className="flex space-x-4 pt-3">
+            <div className="flex space-x-4 pt-3" ref={cta}>
               <div className="text-1xl underline underline-offset-8">
                 FIND OUT MORE
               </div>
