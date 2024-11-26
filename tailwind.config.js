@@ -23,6 +23,10 @@ export default {
         'skill-sm': { 'min': '471px', 'max': '800px' },
         'skill-m': { 'max': '800px' },
         'footer-all': { 'max': '1300px' },
+        'proj-lg': { 'min': '1351px', 'max': '1450px' },
+        'proj-semi-lg': { 'min': '1101px', 'max': '1350px' },
+        'proj-medium': { 'min': '901px', 'max': '1100px' },
+        'proj-sm': { 'max': '900px' },
       }
     },
   },

@@ -155,7 +155,7 @@ const Overlay = ({ title, onClose, tools }) => {
       {/* Content */}
       <div className="bg-[#F0F1F5] p-6 rounded-md shadow-lg w-[90%] flex flex-col">
         <div className="flex justify-between items-center mb-1">
-          <h2 className="text-3xl font-bold ml-[10%]">{title}</h2>
+          <h2 className="text-3xl font-bold ml-[10%] proj-sm:ml-0">{title}</h2>
           {/* Close button */}
           <img
             src={close}
@@ -163,14 +163,16 @@ const Overlay = ({ title, onClose, tools }) => {
             onClick={handleClose}
           />
         </div>
-        <div className="grid grid-cols-[5%_90%_5%] items-center justify-center">
-          <img
-            src={leftarrow}
-            className="w-14 cursor-pointer"
-            onClick={handleLeftButton}
-          />
+        <div className="grid grid-cols-[10%_80%_10%] items-center justify-center proj-sm:block">
+          <div className="proj-sm:hidden">
+            <img
+              src={leftarrow}
+              className="w-14 cursor-pointer"
+              onClick={handleLeftButton}
+            />
+          </div>
           <div
-            className="flex justify-center relative w-full h-[600px]"
+            className="flex justify-center relative w-full h-[600px] left-10 proj-lg:h-[550px] proj-semi-lg:h-[500px] proj-semi-lg:left-[2rem] proj-medium:h-[400px] proj-medium:left-[2rem] proj-sm:left-[2rem] proj-sm:h-[420px]"
             ref={containerImg}
           >
             {tools.map((tool, index) => (
@@ -189,22 +191,47 @@ const Overlay = ({ title, onClose, tools }) => {
               />
             ))}
           </div>
-          <img
-            src={rightarrow}
-            className="w-14 cursor-pointer"
-            onClick={handleRightButton}
-          />
+          <div className="flex justify-end proj-sm:hidden">
+            <img
+              src={rightarrow}
+              className="w-14 cursor-pointer"
+              onClick={handleRightButton}
+            />
+          </div>
         </div>
-        <div className="ml-[10%]">
-          Skills: React, Redux, Nest.js, HTML, CSS, Typescript, PostgreSQL,
-          Docker Git
+        <div className="hidden proj-sm:flex justify-between mt-6">
+          <div className="hidden proj-sm:block">
+            <img
+              src={leftarrow}
+              className="w-14 cursor-pointer"
+              onClick={handleLeftButton}
+            />
+          </div>
+          <div className="hidden justify-end proj-sm:block">
+            <img
+              src={rightarrow}
+              className="w-14 cursor-pointer"
+              onClick={handleRightButton}
+            />
+          </div>
         </div>
-        <div className="ml-[10%]">
+        <div className="ml-[13%] w-[75%] mt-6 text-lg proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%]">
+          <p>
+            <span className="font-semibold">Skills: </span>React, Redux,
+            Nest.js, HTML, CSS, Typescript, PostgreSQL, Docker Git
+          </p>
+        </div>
+        <div className="ml-[13%] w-[75%] text-lg mt-4 proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%]">
           PTE Master an automated online learning system that integrated AI
           technology, providing students with a comprehensive platform for
           improving their English skill in preparation for their PTE test.
         </div>
-        <div className="ml-[10%]">Link: https://www.masterpte.com.au/</div>
+        <div className="ml-[13%] text-lg mt-4 proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%]">
+          <p>
+            <span className="font-semibold">Link: </span>
+            https://www.masterpte.com.au
+          </p>
+        </div>
       </div>
     </div>
   );
