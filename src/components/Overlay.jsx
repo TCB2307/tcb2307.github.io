@@ -135,6 +135,18 @@ const Overlay = ({ title, onClose, tools }) => {
     );
   });
 
+  const handleClose = () => {
+    // Fade-out animation when the component closes
+    gsap.to(overlay.current, {
+      opacity: 0,
+      duration: 0.5,
+      ease: "power2.out",
+      onComplete: () => {
+        onClose(); // Trigger the parent onClose callback
+      },
+    });
+  };
+
   return (
     <div
       ref={overlay}
@@ -145,7 +157,11 @@ const Overlay = ({ title, onClose, tools }) => {
         <div className="flex justify-between items-center mb-1">
           <h2 className="text-3xl font-bold ml-[10%]">{title}</h2>
           {/* Close button */}
-          <img src={close} className="w-14 cursor-pointer" onClick={onClose} />
+          <img
+            src={close}
+            className="w-14 cursor-pointer"
+            onClick={handleClose}
+          />
         </div>
         <div className="grid grid-cols-[5%_90%_5%] items-center justify-center">
           <img
