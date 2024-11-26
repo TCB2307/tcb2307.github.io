@@ -12,7 +12,7 @@ function Work() {
   const project = {
     "Project 1": {
       title: "01. PTE Master",
-      tools: [pte1, pte2, pte3],
+      tools: [pte1, pte2, pte3, pte3, pte3],
     },
     "Project 2": {
       title: "Project 2",

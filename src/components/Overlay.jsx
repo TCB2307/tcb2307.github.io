@@ -12,27 +12,118 @@ const Overlay = ({ title, onClose, tools }) => {
 
   const containerImg = React.useRef();
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [isAnimating, setIsAnimating] = React.useState(false);
 
-  const handleNext = () => {
-    if (currentIndex < tools.length - 1) {
-      const currentImg = containerImg.current.children[currentIndex];
-      const nextImg = containerImg.current.children[currentIndex + 1];
+  // LEFT BUTTON
+  const handleLeftButton = () => {
+    if (isAnimating) return; // Prevent clicks if an animation is ongoing
 
-      // Fade out the current image
-      gsap.to(currentImg, {
-        opacity: 0,
-        duration: 0.5,
-        onComplete: () => {
-          // Move the next image into the same position of the previous img
-          gsap.to(
-            nextImg, // Starting position of the next image
-            { x: -30, y: 30, opacity: 1, zIndex: 10, duration: 0.5 }
-          );
-        },
-      });
+    setIsAnimating(true); // Set the animation state to true
 
-      setCurrentIndex(currentIndex + 1);
-    }
+    const totalImages = tools.length;
+    const currentImg = containerImg.current.children[currentIndex];
+    const prevIndex = (currentIndex - 1 + totalImages) % totalImages; // For infinite loop and track the previous img index
+    const prevImg = containerImg.current.children[prevIndex];
+
+    gsap.set(prevImg, { opacity: 0, x: -90, y: 50, zIndex: tools.length });
+
+    // Adjust z-index for all images except the currentImg and nextImg
+    updateZIndexForLeftButton(currentImg, prevImg);
+
+    // Fade out the current image
+    gsap.to(currentImg, {
+      x: 0,
+      y: 0,
+      duration: 0.3,
+      zIndex: tools.length - 1,
+      onComplete: () => {
+        //setup the previous img
+        gsap.set(prevImg, { opacity: 0, x: -90, y: 50, zIndex: tools.length });
+        // Move the next image into the same position of the previous img
+        gsap.to(
+          prevImg, // Starting position of the next image
+          {
+            x: -60,
+            opacity: 1,
+            duration: 0.5,
+            onComplete: () => {
+              // Reset the current image to prepare it for future transitions
+              setCurrentIndex(prevIndex); // Update the current index
+
+              // Adjust z-index for all images except the currentImg and nextImg
+
+              // Re-enable clicking once animation is done
+              setIsAnimating(false);
+            },
+          }
+        );
+      },
+    });
+  };
+
+  // Function to update the z-index for all elements except currentImg and prevImg
+  const updateZIndexForLeftButton = (currentImg, prevImg) => {
+    // Loop through all the images and increase z-index for images except currentImg and nextImg
+    Array.from(containerImg.current.children).forEach((img, index) => {
+      if (img !== currentImg && img !== prevImg) {
+        const currentZIndex = parseInt(img.style.zIndex, 10);
+        gsap.set(img, { zIndex: currentZIndex - 1 });
+      }
+    });
+  };
+
+  // RIGHT BUTTON
+  const handleRightButton = () => {
+    if (isAnimating) return; // Prevent clicks if an animation is ongoing
+
+    setIsAnimating(true); // Set the animation state to true
+
+    const totalImages = tools.length;
+    const currentImg = containerImg.current.children[currentIndex];
+    const nextIndex = (currentIndex + 1) % totalImages; // For infinite loop and track the next img index
+    const nextImg = containerImg.current.children[nextIndex];
+
+    // Fade out the current image
+    gsap.to(currentImg, {
+      opacity: 0,
+      x: -90,
+      duration: 0.5,
+      onComplete: () => {
+        // Move the next image into the same position of the previous img
+        gsap.to(
+          nextImg, // Starting position of the next image
+          {
+            x: -60,
+            y: 50,
+            opacity: 1,
+            zIndex: tools.length,
+            duration: 0.3,
+            onComplete: () => {
+              // Reset the current image to prepare it for future transitions
+              gsap.set(currentImg, { opacity: 1, x: 0, y: 0, zIndex: 1 });
+              setCurrentIndex(nextIndex); // Update the current index
+
+              // Adjust z-index for all images except the currentImg and nextImg
+              updateZIndexForRightButton(currentImg, nextImg);
+
+              // Re-enable clicking once animation is done
+              setIsAnimating(false);
+            },
+          }
+        );
+      },
+    });
+  };
+
+  // Function to update the z-index for all elements except currentImg and nextImg
+  const updateZIndexForRightButton = (currentImg, nextImg) => {
+    // Loop through all the images and increase z-index for images except currentImg and nextImg
+    Array.from(containerImg.current.children).forEach((img, index) => {
+      if (img !== currentImg && img !== nextImg) {
+        const currentZIndex = parseInt(img.style.zIndex, 10);
+        gsap.set(img, { zIndex: currentZIndex + 1 });
+      }
+    });
   };
 
   useGSAP(() => {
@@ -43,6 +134,7 @@ const Overlay = ({ title, onClose, tools }) => {
       { opacity: 1, duration: 0.5, ease: "power2.out" }
     );
   });
+
   return (
     <div
       ref={overlay}
@@ -56,7 +148,11 @@ const Overlay = ({ title, onClose, tools }) => {
           <img src={close} className="w-14 cursor-pointer" onClick={onClose} />
         </div>
         <div className="grid grid-cols-[5%_90%_5%] items-center justify-center">
-          <img src={leftarrow} className="w-14 cursor-pointer" />
+          <img
+            src={leftarrow}
+            className="w-14 cursor-pointer"
+            onClick={handleLeftButton}
+          />
           <div
             className="flex justify-center relative w-full h-[600px]"
             ref={containerImg}
@@ -66,9 +162,9 @@ const Overlay = ({ title, onClose, tools }) => {
                 key={index}
                 src={tool}
                 alt="logo"
-                className={`w-[90%] max-w-[1100px] aspect-[16/9] rounded-br-[50px] max-h-[550px] absolute ${
+                className={`w-[90%] max-w-[1100px] aspect-[16/9] rounded-br-[50px] max-h-[550px] absolute border-2 border-gray-300 ${
                   index === 0
-                    ? "translate-x-[-30px] translate-y-[30px] z-10"
+                    ? "translate-x-[-60px] translate-y-[50px] z-10"
                     : ""
                 }`}
                 style={{
@@ -80,7 +176,7 @@ const Overlay = ({ title, onClose, tools }) => {
           <img
             src={rightarrow}
             className="w-14 cursor-pointer"
-            onClick={handleNext}
+            onClick={handleRightButton}
           />
         </div>
         <div className="ml-[10%]">
