@@ -26,8 +26,11 @@ const Overlay = ({ title, onClose, tools }) => {
     const totalImages = tools.length;
     const currentImg = containerImg.current.children[currentIndex];
     const prevIndex = (currentIndex - 1 + totalImages) % totalImages; // For infinite loop and track the previous img index
+    const prevTwoIndex = (currentIndex + 1) % totalImages; // Track the previous two img index
     const prevImg = containerImg.current.children[prevIndex];
-
+    const prevTwoImg = containerImg.current.children[prevTwoIndex];
+    console.log(prevImg);
+    console.log(prevTwoImg);
     gsap.set(prevImg, { opacity: 0, x: -90, y: 50, zIndex: tools.length });
 
     // Adjust z-index for all images except the currentImg and nextImg
@@ -49,7 +52,15 @@ const Overlay = ({ title, onClose, tools }) => {
             x: -60,
             opacity: 1,
             duration: 0.5,
+          }
+        );
+        gsap.to(
+          prevTwoImg, // Starting position of the next image
+          {
+            opacity: 0,
+            duration: 0.5,
             onComplete: () => {
+              gsap.set(prevTwoImg, { x: 20, y: 0 });
               // Reset the current image to prepare it for future transitions
               setCurrentIndex(prevIndex); // Update the current index
 
@@ -84,13 +95,15 @@ const Overlay = ({ title, onClose, tools }) => {
     const totalImages = tools.length;
     const currentImg = containerImg.current.children[currentIndex];
     const nextIndex = (currentIndex + 1) % totalImages; // For infinite loop and track the next img index
+    const nextTwoIndex = (currentIndex + 2) % totalImages; // track the next 2 imgs index
     const nextImg = containerImg.current.children[nextIndex];
+    const nextTwoImg = containerImg.current.children[nextTwoIndex];
 
     // Fade out the current image
     gsap.to(currentImg, {
       opacity: 0,
       x: -90,
-      duration: 0.5,
+      duration: 0.4,
       onComplete: () => {
         // Move the next image into the same position of the previous img
         gsap.to(
@@ -103,14 +116,24 @@ const Overlay = ({ title, onClose, tools }) => {
             duration: 0.3,
             onComplete: () => {
               // Reset the current image to prepare it for future transitions
-              gsap.set(currentImg, { opacity: 1, x: 0, y: 0, zIndex: 1 });
-              setCurrentIndex(nextIndex); // Update the current index
+              gsap.set(currentImg, { opacity: 0, x: 20, y: 0, zIndex: 1 });
+              gsap.to(
+                nextTwoImg, // Starting position of the next image
+                {
+                  x: 0,
+                  opacity: 1,
+                  duration: 0.5,
+                  onComplete: () => {
+                    setCurrentIndex(nextIndex); // Update the current index
 
-              // Adjust z-index for all images except the currentImg and nextImg
-              updateZIndexForRightButton(currentImg, nextImg);
+                    // Adjust z-index for all images except the currentImg and nextImg
+                    updateZIndexForRightButton(currentImg, nextImg);
 
-              // Re-enable clicking once animation is done
-              setIsAnimating(false);
+                    // Re-enable clicking once animation is done
+                    setIsAnimating(false);
+                  },
+                }
+              );
             },
           }
         );
@@ -200,11 +223,9 @@ const Overlay = ({ title, onClose, tools }) => {
                 key={index}
                 src={tool}
                 alt="logo"
-                className={`w-[90%] max-w-[1100px] aspect-[16/9] rounded-br-[50px] max-h-[550px] absolute border-2 border-gray-300 proj-sm:w-[85%] ${
-                  index === 0
-                    ? "translate-x-[-60px] translate-y-[50px] z-10"
-                    : ""
-                }`}
+                className={`w-[90%] max-w-[1100px] aspect-[16/9] rounded-br-[50px] max-h-[550px] absolute proj-sm:w-[85%] shadow-[5px_3px_5px_0_rgba(0,_0,_0,_0.5)] ${
+                  index === 0 ? "translate-x-[-60px] translate-y-[50px]" : ""
+                } ${index > 1 ? "opacity-0 translate-x-[20px]" : ""}`}
                 style={{
                   zIndex: tools.length - index, // Highest z-index for the first image
                 }}
