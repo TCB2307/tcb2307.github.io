@@ -19,7 +19,8 @@ function Intro() {
   const cta = React.useRef(); // Reference to the overlay container
   const copy01 = React.useRef(); // Reference to the overlay container
   const copy02 = React.useRef(); // Reference to the overlay container
-  const img = React.useRef(); // Reference to the overlay container
+  const img01 = React.useRef(); // Reference to the overlay container
+  const img02 = React.useRef(); // Reference to the overlay container
   const icon = React.useRef(); // Reference to the overlay container
 
   useGSAP(() => {
@@ -49,7 +50,7 @@ function Intro() {
     );
 
     gsap.fromTo(
-      img.current,
+      [img01.current, img02.current],
       { scale: 0 },
       {
         scale: 1,
@@ -150,7 +151,10 @@ function Intro() {
   return (
     <div>
       <div className="px-12 pt-8 ">
-        <div className="text-1xl justify-center items-center pt-10 hidden md:flex">
+        <div
+          className="text-1xl justify-center items-center pt-10 hidden md:flex"
+          ref={img02}
+        >
           <img src={myAva} alt="Avatar" className="w-60" />
         </div>
         <div className="flex py-8">
@@ -214,7 +218,7 @@ function Intro() {
           </div>
           <div
             className="text-1xl w-2/5 flex justify-center items-center pt-10 mac:w-[30%] md:hidden"
-            ref={img}
+            ref={img01}
           >
             <img src={myAva} alt="Avatar" className="w-80" />
           </div>
