@@ -3,9 +3,11 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import myAva from "../images/avatar.png";
 import arrow from "../images/arrow.svg";
-import img01 from "../images/img01.png";
+import hero01 from "../images/hero01.png";
+import hero02 from "../images/hero02.png";
 import Button from "./Button";
 import TypingEffect from "./TypingEffect";
+import { motion } from "framer-motion";
 
 gsap.registerPlugin(useGSAP);
 
@@ -17,6 +19,8 @@ function Intro() {
   const cta = React.useRef(); // Reference to the overlay container
   const copy01 = React.useRef(); // Reference to the overlay container
   const copy02 = React.useRef(); // Reference to the overlay container
+  const img = React.useRef(); // Reference to the overlay container
+  const icon = React.useRef(); // Reference to the overlay container
 
   useGSAP(() => {
     // Fade-in animation when component show
@@ -38,9 +42,20 @@ function Intro() {
       {
         opacity: 1,
         scale: 1,
-        duration: 1,
+        duration: 1.5,
         ease: "power2.inOut",
-        delay: 1.5,
+        delay: 1.2,
+      }
+    );
+
+    gsap.fromTo(
+      img.current,
+      { scale: 0 },
+      {
+        scale: 1,
+        duration: 1,
+        ease: "power2.out",
+        delay: 1.6,
       }
     );
 
@@ -52,7 +67,7 @@ function Intro() {
         y: 0,
         duration: 0.3,
         ease: "none",
-        delay: 2.2,
+        delay: 2,
       }
     );
 
@@ -64,7 +79,7 @@ function Intro() {
         y: 0,
         duration: 0.3,
         ease: "none",
-        delay: 2.4,
+        delay: 2.2,
       }
     );
 
@@ -77,6 +92,19 @@ function Intro() {
         duration: 0.3,
         ease: "none",
         delay: 2.4,
+      }
+    );
+
+    gsap.fromTo(
+      icon.current,
+      { scale: 0.5, opacity: 0, transformOrigin: "bottom center" },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 1,
+        ease: "elastic.out(0.5, 0.3)",
+        transformOrigin: "bottom center",
+        delay: 2,
       }
     );
   });
@@ -184,13 +212,30 @@ function Intro() {
               <img src={arrow} alt="arrow" className="w-5" />
             </div>
           </div>
-          <div className="text-1xl w-2/5 flex justify-center items-center pt-10 mac:w-[30%] md:hidden">
+          <div
+            className="text-1xl w-2/5 flex justify-center items-center pt-10 mac:w-[30%] md:hidden"
+            ref={img}
+          >
             <img src={myAva} alt="Avatar" className="w-80" />
           </div>
         </div>
       </div>
-      <div className="w-full">
-        <img src={img01} alt="IMG01" className="" />
+      <div className="w-full absolute">
+        <motion.img
+          src={hero02} // Using the imported image
+          alt="IMG01"
+          className="w-full"
+          initial={{ clipPath: "inset(0 100% 0 0)" }} // Starts hidden (from the right)
+          animate={{ clipPath: "inset(0 0% 0 0)" }} // Reveals fully
+          transition={{
+            duration: 2, // Animation duration (2 seconds)
+            ease: "easeInOut", // Smooth transition
+            delay: 2,
+          }}
+        />
+      </div>
+      <div className="w-full" ref={icon}>
+        <img src={hero01} alt="IMG01" className="" />
       </div>
     </div>
   );
