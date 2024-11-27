@@ -1,3 +1,5 @@
+import React from "react";
+
 function ColumnText({ text01, text02 }) {
   return (
     <div className="text-center flex flex-col w-[7rem]">
@@ -7,9 +9,13 @@ function ColumnText({ text01, text02 }) {
   );
 }
 
-export default function About() {
+// Use React.forwardRef to forward the ref to the About section
+const About = React.forwardRef((props, ref) => {
   return (
-    <div className="bg-[#14BECA] flex flex-col space-y-4 px-12 pt-10 text-white pb-[8rem] phone:px-2">
+    <div
+      ref={ref} // Attach the ref here to make it scrollable
+      className="bg-[#14BECA] flex flex-col space-y-4 px-12 pt-10 text-white pb-[8rem] phone:px-2"
+    >
       <div className="flex justify-center text-10 text-5xl font-medium pt-4">
         About myself
       </div>
@@ -26,4 +32,6 @@ export default function About() {
       </div>
     </div>
   );
-}
+});
+
+export default About;

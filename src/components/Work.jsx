@@ -6,7 +6,7 @@ import pte1 from "../images/pte/pte1.png";
 import pte2 from "../images/pte/pte2.png";
 import pte3 from "../images/pte/pte3.png";
 
-function Work() {
+const Work = React.forwardRef((props, ref) => {
   const [activeProject, setActiveProject] = React.useState(null);
 
   const project = {
@@ -33,7 +33,7 @@ function Work() {
   };
 
   return (
-    <div>
+    <div ref={ref}>
       <div className="pb-20 border-black border-opacity-20 border-b">
         <div className="flex justify-center text-10 text-5xl font-medium pt-4 pb-16">
           Work
@@ -71,6 +71,6 @@ function Work() {
       )}
     </div>
   );
-}
+});
 
 export default Work;

@@ -1,9 +1,10 @@
+import React from "react";
 import ava02 from "../images/ava02.png";
 import icon from "../images/icon.png";
 
-function Contact() {
+const Contact = React.forwardRef((props, ref) => {
   return (
-    <div>
+    <div ref={ref}>
       <div className="h-[20rem] flex justify-center">
         <div className="bg-[#D6D6D6] w-4/5 relative top-28 rounded-[1.3rem] flex md:w-[93%] skill-m:block">
           <div className="w-1/2 skill-m:w-full">
@@ -36,6 +37,6 @@ function Contact() {
       </div>
     </div>
   );
-}
+});
 
 export default Contact;

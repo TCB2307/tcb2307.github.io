@@ -1,3 +1,4 @@
+import React from "react";
 import SkillDetail from "./SkillDetail";
 import website from "../images/website.png";
 import email from "../images/email-icon.png";
@@ -13,11 +14,13 @@ import gulp from "../images/gulp.png";
 import gsap from "../images/gsap.png";
 import figma from "../images/figma.png";
 import photoshop from "../images/photoshop.png";
-import { useEffect } from "react";
 
-export default function Skill() {
+const Skill = React.forwardRef((props, ref) => {
   return (
-    <div className="flex justify-center relative bottom-20 skill:mx-10 skill-text:mx-4 skill-m:mx-6">
+    <div
+      ref={ref}
+      className="flex justify-center relative bottom-20 skill:mx-10 skill-text:mx-4 skill-m:mx-6"
+    >
       <div className="bg-[#FFFEFE] max-w-[1500px] border-black rounded-3xl border-2 border-opacity-10 skill:max-w-[1300px]">
         <div className="flex items-center skill-sm:block phone:block">
           <SkillDetail
@@ -49,4 +52,6 @@ Designed dynamic EDMs for clients like Myer and NAB, creating visually impactful
       </div>
     </div>
   );
-}
+});
+
+export default Skill;
