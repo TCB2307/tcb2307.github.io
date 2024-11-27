@@ -12,8 +12,8 @@ export default function Navigation({
   return (
     <motion.div
       className="relative h-[90px]"
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
       transition={{
         duration: 0.5,
         ease: "easeOut",
@@ -23,7 +23,7 @@ export default function Navigation({
         damping: 10,
       }}
     >
-      <div className="flex pb-4 pt-4 bg-white relative border-b-2 z-[101]">
+      <div className="flex pb-4 pt-[3rem] top-[-2rem] bg-white relative border-b-2 z-[101]">
         <div className="flex w-2/6 items-center">
           <img src={logo} alt="logo" className="w-10 ml-8 py-[7px] h-[56px]" />
         </div>
