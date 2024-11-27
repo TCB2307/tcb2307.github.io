@@ -153,25 +153,37 @@ export default function Navigation({
           <div className="font-extralight text-2xl text-center border-l-[1px] text-[#14BECA]">
             <div
               className="px-[3rem] pb-5 pt-10 border-b-[1px] cursor-pointer"
-              onClick={scrollToAbout}
+              onClick={() => {
+                scrollToAbout();
+                setActive(false);
+              }}
             >
               About
             </div>
             <div
               className="px-[3rem] py-5 border-b-[1px] cursor-pointer"
-              onClick={scrollToSkill}
+              onClick={() => {
+                scrollToSkill();
+                setActive(false);
+              }}
             >
               Skills
             </div>
             <div
               className="px-[3rem] py-5 border-b-[1px] cursor-pointer"
-              onClick={scrollToProject}
+              onClick={() => {
+                scrollToProject();
+                setActive(false);
+              }}
             >
               Projects
             </div>
             <div
               className="px-[3rem] py-5 border-b-[1px] cursor-pointer"
-              onClick={scrollToContact}
+              onClick={() => {
+                scrollToContact();
+                setActive(false);
+              }}
             >
               Contact
             </div>

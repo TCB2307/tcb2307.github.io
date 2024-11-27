@@ -27,6 +27,11 @@ const About = React.forwardRef((props, ref) => {
   useGSAP(() => {
     // Delay the animation start by 1 second after the page loads
     setTimeout(() => {
+      gsap.to(ref.current, {
+        opacity: 1,
+        duration: 0.1,
+        ease: "power2.out",
+      });
       gsap.fromTo(
         aboutTitle.current,
         { opacity: 0, y: 20 }, // Initial state (hidden)
@@ -113,7 +118,7 @@ const About = React.forwardRef((props, ref) => {
   return (
     <div
       ref={ref} // Attach the ref here to make it scrollable
-      className="bg-[#14BECA] flex flex-col space-y-4 px-12 pt-10 text-white pb-[8rem] phone:px-2"
+      className="bg-[#14BECA] flex flex-col space-y-4 px-12 pt-10 text-white pb-[8rem] phone:px-2 opacity-0"
     >
       <div
         className="flex justify-center text-10 text-5xl font-medium pt-4 relative opacity-0"

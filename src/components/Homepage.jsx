@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
+import LoadingOverlay from "./LoadingOverlay";
 import Intro from "./Intro";
 import About from "./About";
 import Skill from "./Skill";
@@ -13,6 +14,7 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollToPlugin);
 
 export default function Homepage() {
+  const [loadingComplete, setLoadingComplete] = React.useState(false);
   const aboutSection = useRef(null); // Create a ref for the About section
   const skillSection = useRef(null); // Create a ref for the Skill section
   const projectSection = useRef(null); // Create a ref for the Project section
@@ -66,23 +68,32 @@ export default function Homepage() {
     });
   };
 
+  const onLoadComplete = () => {
+    setLoadingComplete(true);
+  };
+
   return (
     <div>
-      {/* Pass scrollToAbout as a prop to Navigation */}
-      <div className="sticky top-0 z-50">
-        <Navigation
-          scrollToAbout={scrollToAbout}
-          scrollToSkill={scrollToSkill}
-          scrollToProject={scrollToProject}
-          scrollToContact={scrollToContact}
-        />
-      </div>
-      <Intro />
-      <About ref={aboutSection} /> {/* Apply the ref to About component */}
-      <Skill ref={skillSection} /> {/* Apply the ref to Skill component */}
-      <Work ref={projectSection} />
-      <Contact ref={contactSection} />
-      <Footer />
+      <LoadingOverlay onLoadComplete={onLoadComplete} />
+      {loadingComplete && (
+        <>
+          {/* Pass scrollToAbout as a prop to Navigation */}
+          <div className="sticky top-0 z-50">
+            <Navigation
+              scrollToAbout={scrollToAbout}
+              scrollToSkill={scrollToSkill}
+              scrollToProject={scrollToProject}
+              scrollToContact={scrollToContact}
+            />
+          </div>
+          <Intro />
+          <About ref={aboutSection} /> {/* Apply the ref to About component */}
+          <Skill ref={skillSection} /> {/* Apply the ref to Skill component */}
+          <Work ref={projectSection} />
+          <Contact ref={contactSection} />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
