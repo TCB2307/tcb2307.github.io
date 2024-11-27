@@ -8,20 +8,23 @@ import hero02 from "../images/hero02.png";
 import Button from "./Button";
 import TypingEffect from "./TypingEffect";
 import { motion } from "framer-motion";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollToPlugin);
 
-function Intro() {
-  const type = React.useRef(); // Reference to the overlay container
-  const tag = React.useRef(); // Reference to the overlay container
-  const describe = React.useRef(); // Reference to the overlay container
-  const text = React.useRef(); // Reference to the overlay container
-  const cta = React.useRef(); // Reference to the overlay container
-  const copy01 = React.useRef(); // Reference to the overlay container
-  const copy02 = React.useRef(); // Reference to the overlay container
-  const img01 = React.useRef(); // Reference to the overlay container
-  const img02 = React.useRef(); // Reference to the overlay container
-  const icon = React.useRef(); // Reference to the overlay container
+function Intro({ scrollAbout }) {
+  const type = React.useRef();
+  const tag = React.useRef();
+  const describe = React.useRef();
+  const text = React.useRef();
+  const cta = React.useRef();
+  const copy01 = React.useRef();
+  const copy02 = React.useRef();
+  const img01 = React.useRef();
+  const img02 = React.useRef();
+  const icon = React.useRef();
+  const arrowRef = React.useRef();
 
   useGSAP(() => {
     // Fade-in animation when component show
@@ -37,15 +40,23 @@ function Intro() {
       }
     );
 
+    gsap.to(arrowRef.current, {
+      y: "5px", // Move down 2px
+      repeat: -1, // Infinite loop
+      yoyo: true, // Reverse the animation
+      duration: 0.5, // Duration for each cycle
+      ease: "power1.inOut", // Smooth easing
+    });
+
     gsap.fromTo(
       tag.current,
       { opacity: 0, scale: 0.8 },
       {
         opacity: 1,
         scale: 1,
-        duration: 1.5,
+        duration: 1,
         ease: "power2.inOut",
-        delay: 1.2,
+        delay: 0,
       }
     );
 
@@ -56,7 +67,7 @@ function Intro() {
         scale: 1,
         duration: 1,
         ease: "power2.out",
-        delay: 1.6,
+        delay: 0.3,
       }
     );
 
@@ -68,7 +79,7 @@ function Intro() {
         y: 0,
         duration: 0.3,
         ease: "none",
-        delay: 2,
+        delay: 0.7,
       }
     );
 
@@ -80,7 +91,7 @@ function Intro() {
         y: 0,
         duration: 0.3,
         ease: "none",
-        delay: 2.2,
+        delay: 0.9,
       }
     );
 
@@ -92,7 +103,7 @@ function Intro() {
         y: 0,
         duration: 0.3,
         ease: "none",
-        delay: 2.4,
+        delay: 1.1,
       }
     );
 
@@ -105,7 +116,7 @@ function Intro() {
         duration: 1,
         ease: "elastic.out(0.5, 0.3)",
         transformOrigin: "bottom center",
-        delay: 2,
+        delay: 1.4,
       }
     );
   });
@@ -209,11 +220,23 @@ function Intro() {
               <Button text="EDMS" />
               <Button text="ANIMATIONS" />
             </div>
-            <div className="flex space-x-4 pt-3" ref={cta}>
-              <div className="text-1xl underline underline-offset-8">
-                FIND OUT MORE
-              </div>
-              <img src={arrow} alt="arrow" className="w-5" />
+            <div
+              className="flex space-x-4 pt-3 w-[180px] h-[60px] btn  cursor-pointer"
+              ref={cta}
+              onClick={scrollAbout}
+            >
+              {/* SVG with animation */}
+              <svg width="180px" height="60px" viewBox="0 0 180 60">
+                <polyline points="179,1 179,59 1,59 1,1 179,1" />
+                <polyline points="179,1 179,59 1,59 1,1 179,1" />
+              </svg>
+              <div className="text-1xl relative top-2">FIND OUT MORE</div>
+              <img
+                ref={arrowRef}
+                src={arrow}
+                alt="arrow"
+                className="w-5 relative bottom-2 right-1"
+              />
             </div>
           </div>
           <div
@@ -234,7 +257,7 @@ function Intro() {
           transition={{
             duration: 2, // Animation duration (2 seconds)
             ease: "easeInOut", // Smooth transition
-            delay: 2,
+            delay: 1.5,
           }}
         />
       </div>

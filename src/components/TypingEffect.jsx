@@ -12,7 +12,7 @@ const TypingEffect = ({ text }) => {
           initial={{ opacity: 0, display: "none" }} // Start with opacity 0
           animate={{ opacity: 1, display: "inline" }} // Fade in to opacity 1
           transition={{
-            delay: 0.5 + index * 0.15, // Delay each letter to simulate typing
+            delay: 1.1 + index * 0.15, // Delay each letter to simulate typing
             duration: 0.01,
             ease: "easeOut",
           }}

@@ -13,7 +13,7 @@ const LoadingOverlay = ({ onLoadComplete }) => {
   useGSAP(() => {
     gsap.to(containerBar.current, {
       width: "100%",
-      duration: 1.5,
+      duration: 1,
       delay: 0.2,
       ease: "power2.out",
     });
@@ -21,7 +21,7 @@ const LoadingOverlay = ({ onLoadComplete }) => {
       clipPath: "circle(0% at 50% 50%)",
       duration: 1,
       ease: "power2.inOut",
-      delay: 0.8,
+      delay: 0.5,
     });
   });
 
@@ -30,7 +30,7 @@ const LoadingOverlay = ({ onLoadComplete }) => {
     setTimeout(() => {
       setLoading(true);
       onLoadComplete(); // Notify when loading is complete
-    }, 1700); // 1.5-second delay for loading screen
+    }, 1500); // 1.5-second delay for loading screen
   }, [onLoadComplete]);
 
   return (

@@ -17,7 +17,7 @@ export default function Navigation({
       transition={{
         duration: 0.5,
         ease: "easeOut",
-        delay: 1.5,
+        delay: 0,
         type: "spring", // Use spring for a bounce effect
         stiffness: 140, // Controls the stiffness of the spring (higher = stiffer)
         damping: 10,

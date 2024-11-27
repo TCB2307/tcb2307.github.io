@@ -86,7 +86,7 @@ export default function Homepage() {
               scrollToContact={scrollToContact}
             />
           </div>
-          <Intro />
+          <Intro scrollAbout={scrollToAbout} />
           <About ref={aboutSection} /> {/* Apply the ref to About component */}
           <Skill ref={skillSection} /> {/* Apply the ref to Skill component */}
           <Work ref={projectSection} />
