@@ -150,14 +150,17 @@ const OverlayEmail = ({ onClose }) => {
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
     >
       {/* Content */}
-      <div className="bg-[#D6D6D6] p-6 w-[90%] flex flex-col rounded-lg shadow-md proj-sm:px-2">
-        <div onClick={handleClose} className="cursor-pointer">
+      <div className="bg-[#D6D6D6] p-6 w-[60%] flex flex-col rounded-lg shadow-md proj-sm:px-2 relative proj-sm:w-[80%] proj-sm:pt-[2rem]">
+        <div
+          onClick={handleClose}
+          className="cursor-pointer absolute top-0 right-0 w-8 h-8 flex items-center justify-center bg-gray-200 hover:bg-gray-300 border-l-2 border-b-2 border-gray-400 rounded transition duration-200"
+        >
           X
         </div>
-        <div className="text-black text-5xl mb-10 flex justify-center">
+        <div className="text-black text-5xl mb-10 flex justify-center text-center proj-sm:text-2xl proj-sm:mb-1">
           How can I help you today?
         </div>
-        <form className="w-[80%] mx-auto bg-[#D6D6D6] p-6 proj-sm:px-0 proj-sm:w-[95%]">
+        <form className="w-[70%] mx-auto bg-[#D6D6D6] p-6 proj-sm:px-0 proj-sm:w-[95%]">
           <div className="flex space-x-10 mb-4 proj-sm:flex-col proj-sm:space-x-0 proj-sm:space-y-3 proj-sm:mb-0">
             <div className="w-6/12 proj-sm:w-full">
               <input
@@ -224,9 +227,9 @@ const OverlayEmail = ({ onClose }) => {
               ref={inputMessage}
               id="message"
               name="message"
-              rows="10"
+              rows="5"
               required
-              className="w-full pl-5 relative pb-5 pt-7 rounded-2xl border-[rgba(20, 190, 202)] focus:outline-none focus:ring-2 border-2 focus:border-[rgba(20,190,202,0.91)] bg-[#f0f4fa]"
+              className="w-full px-5 relative pb-5 pt-7 rounded-2xl border-[rgba(20, 190, 202)] focus:outline-none focus:ring-2 border-2 focus:border-[rgba(20,190,202,0.91)] bg-[#f0f4fa]"
               style={{
                 boxShadow: focusState.message
                   ? "0 0 0 5px rgba(20, 190, 202, 0.11)"
@@ -239,7 +242,7 @@ const OverlayEmail = ({ onClose }) => {
 
           <button
             type="submit"
-            className="w-[180px] bg-[#14BECA] text-white font-bold py-3 rounded-lg hover:bg-[#12a6b2] transition-all"
+            className="w-[180px] bg-[#14BECA] text-white font-bold py-3 rounded-lg hover:bg-[#12a6b2] transition-all mt-10 proj-sm:mt-2"
           >
             SEND MESSAGE
           </button>
