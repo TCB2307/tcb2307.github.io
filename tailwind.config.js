@@ -32,6 +32,7 @@ export default {
         'proj-very-small': { 'min': '501px', 'max': '600px' },
         'proj-tiny': { 'min': '401px', 'max': '500px' },
         'proj-very-tiny': { 'max': '400px' },
+        'contact-med': { 'min': '901px', 'max': '1500px' },
       }
     },
   },

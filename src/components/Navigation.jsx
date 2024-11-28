@@ -140,7 +140,7 @@ export default function Navigation({
               top: "75px",
               transition: {
                 opacity: { duration: 0.1 }, // First animate opacity
-                top: { duration: 0.4, delay: 0.1 }, // Then move to 75px after opacity animation
+                top: { duration: 0.3, delay: 0.1 }, // Then move to 75px after opacity animation
               },
             },
             close: {
