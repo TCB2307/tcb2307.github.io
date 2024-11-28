@@ -1,8 +1,19 @@
 import React from "react";
 import ava02 from "../images/ava02.png";
 import icon from "../images/icon.png";
+import OverlayEmail from "./OverlayEmail";
 
 const Contact = React.forwardRef((props, ref) => {
+  const [activeProject, setActiveProject] = React.useState(null);
+
+  const handleShowOverlay = () => {
+    setActiveProject(true);
+  };
+
+  const handleHideOverlay = () => {
+    setActiveProject(null);
+  };
+
   return (
     <div ref={ref}>
       <div className="h-[20rem] flex justify-center">
@@ -17,7 +28,10 @@ const Contact = React.forwardRef((props, ref) => {
                 you’re interested in collaborating or learning more about me.
               </div>
               <div className="flex">
-                <div className="bg-[#F4F4F4] flex px-4 py-2  cursor-pointer rounded-[0.5rem]">
+                <div
+                  className="bg-[#F4F4F4] flex px-4 py-2  cursor-pointer rounded-[0.5rem]"
+                  onClick={handleShowOverlay}
+                >
                   <div className="font-semibold text-[1.3rem] flex items-center pr-3">
                     Contact Me
                   </div>
@@ -25,6 +39,9 @@ const Contact = React.forwardRef((props, ref) => {
                     <img src={icon} alt="icon" className="w-10" />
                   </div>
                 </div>
+
+                {/* Shared Overlay */}
+                {activeProject && <OverlayEmail onClose={handleHideOverlay} />}
               </div>
             </div>
           </div>

@@ -221,7 +221,7 @@ function Intro({ scrollAbout }) {
               <Button text="ANIMATIONS" />
             </div>
             <div
-              className="flex space-x-4 pt-3 w-[180px] h-[60px] btn  cursor-pointer"
+              className="flex space-x-4 pt-3 w-[180px] h-[60px] btn cursor-pointer"
               ref={cta}
               onClick={scrollAbout}
             >
