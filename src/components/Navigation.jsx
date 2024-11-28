@@ -136,8 +136,12 @@ export default function Navigation({
           }
           variants={{
             open: {
+              opacity: 1,
               top: "75px",
-              opacity: 100,
+              transition: {
+                opacity: { duration: 0.1 }, // First animate opacity
+                top: { duration: 0.4, delay: 0.1 }, // Then move to 75px after opacity animation
+              },
             },
             close: {
               top: "-225px",
