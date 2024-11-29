@@ -1,15 +1,48 @@
 import React from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import emailjs from "emailjs-com";
 
 gsap.registerPlugin(useGSAP);
 
 const OverlayEmail = ({ onClose }) => {
+  const [formData, setFormData] = React.useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
   const [focusState, setFocusState] = React.useState({
     name: false,
     email: false,
     message: false,
   });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        "service_im8q9h7", // Replace with your EmailJS Service ID
+        "template_lvdulyb", // Replace with your EmailJS Template ID
+        formData,
+        "Kr9zka_qSy9rZrq_X" // Replace with your EmailJS Public Key
+      )
+      .then(
+        (result) => {
+          alert("Message sent successfully!");
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          alert("Failed to send message. Please try again later.");
+        }
+      );
+  };
 
   const nameRef = React.useRef();
   const emailRef = React.useRef();
@@ -160,7 +193,10 @@ const OverlayEmail = ({ onClose }) => {
         <div className="text-black text-5xl mb-10 flex justify-center text-center proj-sm:text-2xl proj-sm:mb-1">
           How can I help you today?
         </div>
-        <form className="w-[70%] contact-med:w-full mx-auto bg-[#D6D6D6] p-6 proj-sm:px-0 proj-sm:w-[95%]">
+        <form
+          onSubmit={handleSubmit}
+          className="w-[70%] contact-med:w-full mx-auto bg-[#D6D6D6] p-6 proj-sm:px-0 proj-sm:w-[95%]"
+        >
           <div className="flex space-x-10 mb-4 proj-sm:flex-col proj-sm:space-x-0 proj-sm:space-y-3 proj-sm:mb-0">
             <div className="w-6/12 proj-sm:w-full">
               <input
@@ -168,6 +204,7 @@ const OverlayEmail = ({ onClose }) => {
                 type="text"
                 id="name"
                 name="name"
+                onChange={handleChange}
                 required
                 className="w-full pl-5 relative pb-5 pt-4 rounded-2xl border-[rgba(20, 190, 202)] focus:outline-none focus:ring-2 border-2 focus:border-[rgba(20,190,202,0.91)] bg-[#f0f4fa]"
                 style={{
@@ -194,6 +231,7 @@ const OverlayEmail = ({ onClose }) => {
                 type="email"
                 id="email"
                 name="email"
+                onChange={handleChange}
                 required
                 className="w-full pl-5 relative pb-5 pt-4 rounded-2xl border-[rgba(20, 190, 202)] focus:outline-none focus:ring-2 border-2 focus:border-[rgba(20,190,202,0.91)] bg-[#f0f4fa]"
                 style={{
@@ -228,6 +266,7 @@ const OverlayEmail = ({ onClose }) => {
               id="message"
               name="message"
               rows="5"
+              onChange={handleChange}
               required
               className="w-full px-5 relative pb-5 pt-7 rounded-2xl border-[rgba(20, 190, 202)] focus:outline-none focus:ring-2 border-2 focus:border-[rgba(20,190,202,0.91)] bg-[#f0f4fa]"
               style={{

@@ -25,9 +25,9 @@ function Footer() {
         <div className="flex justify-center pt-44">
           <img src={logo02} alt="logo02" className="w-20" />
         </div>
-        <div className="flex justify-center text-center ">
-          <div className=" w-80 text-white font-light text-3xl pt-10 pb-20">
-            Lorem ipsum dolor sit amet, consectetur
+        <div className="flex justify-center text-center">
+          <div className=" w-[30rem] text-white font-light text-3xl pt-10 pb-20 proj-sm:px-10">
+            Design is where art meets logic, and code brings it to life.
           </div>
         </div>
         <div className="flex justify-center pb-20">

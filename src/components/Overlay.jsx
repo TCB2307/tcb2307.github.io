@@ -7,7 +7,7 @@ import rightarrow from "../images/rightarrow.png";
 
 gsap.registerPlugin(useGSAP);
 
-const Overlay = ({ title, onClose, tools }) => {
+const Overlay = ({ title, onClose, tools, skill, detail, link }) => {
   const overlay = React.useRef(); // Reference to the overlay container
 
   const containerImg = React.useRef();
@@ -240,19 +240,17 @@ const Overlay = ({ title, onClose, tools }) => {
         </div>
         <div className="ml-[13%] w-[75%] mt-6 text-lg proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%] phone:text-base">
           <p>
-            <span className="font-semibold">Skills: </span>React, Redux,
-            Nest.js, HTML, CSS, Typescript, PostgreSQL, Docker Git
+            <span className="font-semibold">Skills: </span>
+            {skill}
           </p>
         </div>
         <div className="ml-[13%] w-[75%] text-lg mt-4 proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%] phone:text-base">
-          PTE Master an automated online learning system that integrated AI
-          technology, providing students with a comprehensive platform for
-          improving their English skill in preparation for their PTE test.
+          {detail}
         </div>
         <div className="ml-[13%] text-lg mt-4 proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%] phone:text-base">
           <p>
             <span className="font-semibold">Link: </span>
-            https://www.masterpte.com.au
+            {link}
           </p>
         </div>
       </div>
