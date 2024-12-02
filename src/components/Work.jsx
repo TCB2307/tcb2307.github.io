@@ -8,14 +8,16 @@ import pte2 from "../images/pte/pte2.png";
 import pte3 from "../images/pte/pte3.png";
 import banner from "../images/banner/banner.jpg";
 import banner1 from "../images/banner/banner1.mov";
+import banner2 from "../images/banner/banner2.mov";
+import banner3 from "../images/banner/banner3.mov";
 
 const Work = React.forwardRef((props, ref) => {
   const [activeProject, setActiveProject] = React.useState(null);
   const tool1 = [pte1, pte2, pte3];
   const tool2 = [
     { type: "video", src: banner1 },
-    { type: "video", src: banner1 },
-    { type: "video", src: banner1 },
+    { type: "video", src: banner2 },
+    { type: "video", src: banner3 },
   ];
   const tool3 = [pte1, pte2, pte3];
 
@@ -31,7 +33,7 @@ const Work = React.forwardRef((props, ref) => {
     "Project 2": {
       title: "Project 2",
       tools: tool2,
-      skill: "React, Redux, Nest.js, HTML, CSS, Typescript",
+      skill: "HTML, CSS, JS, GSAP, Photoshop, React",
       detail:
         "PTE Master an automated online learning system that integrated AI technology, providing students with a comprehensive platform for improving their English skill in preparation for their PTE test.",
       link: "https://www.masterpte.com.au",
