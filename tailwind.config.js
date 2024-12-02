@@ -33,6 +33,7 @@ export default {
         'proj-tiny': { 'min': '401px', 'max': '500px' },
         'proj-very-tiny': { 'max': '400px' },
         'contact-med': { 'min': '901px', 'max': '1500px' },
+        'proj-lg-video': { 'max': '1450px' },
       }
     },
   },

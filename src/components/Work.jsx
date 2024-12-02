@@ -6,17 +6,23 @@ import pte from "../images/pte/pte.png";
 import pte1 from "../images/pte/pte1.png";
 import pte2 from "../images/pte/pte2.png";
 import pte3 from "../images/pte/pte3.png";
-import banner1 from "../images/banner/banner1.png";
-import banner2 from "../images/banner/banner2.png";
-import banner3 from "../images/banner/banner3.png";
+import banner from "../images/banner/banner.jpg";
+import banner1 from "../images/banner/banner1.mov";
 
 const Work = React.forwardRef((props, ref) => {
   const [activeProject, setActiveProject] = React.useState(null);
+  const tool1 = [pte1, pte2, pte3];
+  const tool2 = [
+    { type: "video", src: banner1 },
+    { type: "video", src: banner1 },
+    { type: "video", src: banner1 },
+  ];
+  const tool3 = [pte1, pte2, pte3];
 
   const project = {
     "Project 1": {
       title: "01. PTE Master",
-      tools: [pte1, pte2, pte3],
+      tools: tool1,
       skill: "React, Redux, Nest.js, HTML, CSS, Typescript",
       detail:
         "PTE Master an automated online learning system that integrated AI technology, providing students with a comprehensive platform for improving their English skill in preparation for their PTE test.",
@@ -24,18 +30,18 @@ const Work = React.forwardRef((props, ref) => {
     },
     "Project 2": {
       title: "Project 2",
-      tools: [banner1, banner2, banner3],
+      tools: tool2,
       skill: "React, Redux, Nest.js, HTML, CSS, Typescript",
       detail:
         "PTE Master an automated online learning system that integrated AI technology, providing students with a comprehensive platform for improving their English skill in preparation for their PTE test.",
       link: "https://www.masterpte.com.au",
     },
     "Project 3": {
-      title: "Project 3",
-      tools: [pte1, pte2, pte3],
-      skill: "React, Redux, Nest.js, HTML, CSS, Typescript",
+      title: "Banners",
+      tools: tool3,
+      skill: "HTML, CSS, JS, GSAP, Photoshop, React",
       detail:
-        "PTE Master an automated online learning system that integrated AI technology, providing students with a comprehensive platform for improving their English skill in preparation for their PTE test.",
+        "I created dynamic banner animations using GSAP library, delivering impactful effects for clients like NAB, MYER, and Officeworks, ensuring smooth performance across all platforms.",
       link: "https://www.masterpte.com.au",
     },
   };
@@ -63,13 +69,13 @@ const Work = React.forwardRef((props, ref) => {
                 onShowOverlay={() => handleShowOverlay("Project 1")}
               />
               <WorkDetail
-                img={img02}
-                name="Project 2"
+                img={banner}
+                name="Banners"
                 onShowOverlay={() => handleShowOverlay("Project 2")}
               />
               <WorkDetail
                 img={img02}
-                name="Project 3"
+                name="Edms"
                 onShowOverlay={() => handleShowOverlay("Project 3")}
               />
             </div>

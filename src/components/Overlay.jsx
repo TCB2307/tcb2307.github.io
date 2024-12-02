@@ -17,6 +17,33 @@ const Overlay = ({ title, onClose, tools, skill, detail, link }) => {
   // Variables to track swipe gestures
   const startX = React.useRef(0);
 
+  const videoRefs = React.useRef([]); // Ref to store each video element
+
+  // UseEffect to ensure only the highest z-index video is playing
+  React.useEffect(() => {
+    const video = videoRefs.current[currentIndex];
+    if (video) {
+      video.play(); // Play the video with the highest z-index
+
+      // Reset video when it stops (ended)
+      video.addEventListener("ended", () => {
+        video.currentTime = 0; // Reset the video to the beginning
+      });
+
+      // Reset video when it is paused
+      video.addEventListener("pause", () => {
+        video.currentTime = 0; // Reset the video to the beginning when paused
+      });
+    }
+
+    // Pause other videos when moving to the next one
+    videoRefs.current.forEach((video, index) => {
+      if (index !== currentIndex) {
+        video.pause(); // Pause the videos that are not in the highest z-index position
+      }
+    });
+  }, [currentIndex]); // Re-run this when currentIndex changes
+
   // LEFT BUTTON
   const handleLeftButton = () => {
     if (isAnimating) return; // Prevent clicks if an animation is ongoing
@@ -216,19 +243,38 @@ const Overlay = ({ title, onClose, tools, skill, detail, link }) => {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
-            {tools.map((tool, index) => (
-              <img
-                key={index}
-                src={tool}
-                alt="logo"
-                className={`w-[90%] max-w-[1100px] aspect-[16/9] rounded-br-[50px] max-h-[550px] absolute proj-sm:w-[85%] shadow-[5px_3px_5px_0_rgba(0,_0,_0,_0.5)] ${
-                  index === 0 ? "translate-x-[-60px] translate-y-[50px]" : ""
-                } ${index > 1 ? "opacity-0 translate-x-[20px]" : ""}`}
-                style={{
-                  zIndex: tools.length - index, // Highest z-index for the first image
-                }}
-              />
-            ))}
+            {tools.map((tool, index) => {
+              const isCurrent = index === currentIndex;
+              return tool.type === "video" ? (
+                <video
+                  key={index}
+                  ref={(el) => (videoRefs.current[index] = el)}
+                  src={tool.src}
+                  alt="video"
+                  autoPlay={isCurrent} // Auto-play if it's playing
+                  loop
+                  muted
+                  className={`proj-lg-video:w-[62%] rounded-br-[50px] max-h-[550px] absolute proj-sm:w-[85%] shadow-[5px_3px_5px_0_rgba(0,_0,_0,_0.5)] ${
+                    index === 0 ? "translate-x-[-60px] translate-y-[50px]" : ""
+                  } ${index > 1 ? "opacity-0 translate-x-[20px]" : ""}`}
+                  style={{
+                    zIndex: tools.length - index, // Highest z-index for the first image
+                  }}
+                />
+              ) : (
+                <img
+                  key={index}
+                  src={tool}
+                  alt="logo"
+                  className={`w-[90%] max-w-[1100px] aspect-[16/9] rounded-br-[50px] max-h-[550px] absolute proj-sm:w-[85%] shadow-[5px_3px_5px_0_rgba(0,_0,_0,_0.5)] ${
+                    index === 0 ? "translate-x-[-60px] translate-y-[50px]" : ""
+                  } ${index > 1 ? "opacity-0 translate-x-[20px]" : ""}`}
+                  style={{
+                    zIndex: tools.length - index, // Highest z-index for the first image
+                  }}
+                />
+              );
+            })}
           </div>
           <div className="flex justify-end proj-sm:hidden">
             <img
