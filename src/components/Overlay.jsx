@@ -24,22 +24,13 @@ const Overlay = ({ title, onClose, tools, skill, detail, link }) => {
     const video = videoRefs.current[currentIndex];
     if (video) {
       video.play(); // Play the video with the highest z-index
-
-      // Reset video when it stops (ended)
-      video.addEventListener("ended", () => {
-        video.currentTime = 0; // Reset the video to the beginning
-      });
-
-      // Reset video when it is paused
-      video.addEventListener("pause", () => {
-        video.currentTime = 0; // Reset the video to the beginning when paused
-      });
     }
 
     // Pause other videos when moving to the next one
     videoRefs.current.forEach((video, index) => {
       if (index !== currentIndex) {
         video.pause(); // Pause the videos that are not in the highest z-index position
+        video.currentTime = 0; // Reset the video to the beginning
       }
     });
   }, [currentIndex]); // Re-run this when currentIndex changes
@@ -88,8 +79,6 @@ const Overlay = ({ title, onClose, tools, skill, detail, link }) => {
               gsap.set(prevTwoImg, { x: 20, y: 0 });
               // Reset the current image to prepare it for future transitions
               setCurrentIndex(prevIndex); // Update the current index
-
-              // Adjust z-index for all images except the currentImg and nextImg
 
               // Re-enable clicking once animation is done
               setIsAnimating(false);
