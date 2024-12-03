@@ -282,12 +282,21 @@ const Overlay = ({ title, onClose, tools, skill, detail, link }) => {
         <div className="ml-[13%] w-[75%] text-lg mt-4 proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%] phone:text-base">
           {detail}
         </div>
-        <div className="ml-[13%] text-lg mt-4 proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%] phone:text-base">
-          <p>
-            <span className="font-semibold">Link: </span>
-            {link}
-          </p>
-        </div>
+        {link && (
+          <div className="ml-[13%] text-lg mt-4 proj-semi-lg:ml-[11%] proj-medium:ml-[11%] proj-sm:ml-[1%] proj-sm:w-[95%] phone:text-base">
+            <p>
+              <span className="font-semibold">Link: </span>
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:underline"
+              >
+                {link}
+              </a>
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

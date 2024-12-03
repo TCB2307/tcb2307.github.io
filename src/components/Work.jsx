@@ -10,16 +10,20 @@ import banner from "../images/banner/banner.jpg";
 import banner1 from "../images/banner/banner1.mov";
 import banner2 from "../images/banner/banner2.mov";
 import banner3 from "../images/banner/banner3.mov";
+import edm from "../images/edm/edm.png";
+import edm1 from "../images/edm/edm1.jpg";
+import edm2 from "../images/edm/edm2.jpg";
+import edm3 from "../images/edm/edm3.jpg";
 
 const Work = React.forwardRef((props, ref) => {
   const [activeProject, setActiveProject] = React.useState(null);
   const tool1 = [pte1, pte2, pte3];
-  const tool2 = [
+  const tool2 = [edm1, edm2, edm3];
+  const tool3 = [
     { type: "video", src: banner1 },
     { type: "video", src: banner2 },
     { type: "video", src: banner3 },
   ];
-  const tool3 = [pte1, pte2, pte3];
 
   const project = {
     "Project 1": {
@@ -31,20 +35,20 @@ const Work = React.forwardRef((props, ref) => {
       link: "https://www.masterpte.com.au",
     },
     "Project 2": {
-      title: "Project 2",
+      title: "Edms",
       tools: tool2,
-      skill: "HTML, CSS, JS, GSAP, Photoshop, React",
+      skill: "HTML, CSS, JS, Gusp, Photoshop, Salesforce",
       detail:
-        "PTE Master an automated online learning system that integrated AI technology, providing students with a comprehensive platform for improving their English skill in preparation for their PTE test.",
-      link: "https://www.masterpte.com.au",
+        "Developed static and dynamic EDMs for Myer and NAB, making visually appealing designs that enhanced brand impact and boosted digital engagement.",
+      link: "",
     },
     "Project 3": {
       title: "Banners",
       tools: tool3,
       skill: "HTML, CSS, JS, GSAP, Photoshop, React",
       detail:
-        "I created dynamic banner animations using GSAP library, delivering impactful effects for clients like NAB, MYER, and Officeworks, ensuring smooth performance across all platforms.",
-      link: "https://www.masterpte.com.au",
+        "Created dynamic banner animations using GSAP library, delivering impactful effects for clients like NAB, MYER, and Officeworks, ensuring smooth performance across all platforms.",
+      link: "",
     },
   };
 
@@ -71,13 +75,13 @@ const Work = React.forwardRef((props, ref) => {
                 onShowOverlay={() => handleShowOverlay("Project 1")}
               />
               <WorkDetail
-                img={banner}
-                name="Banners"
+                img={edm}
+                name="Electrical Direct Emails"
                 onShowOverlay={() => handleShowOverlay("Project 2")}
               />
               <WorkDetail
-                img={img02}
-                name="Edms"
+                img={banner}
+                name="Banners"
                 onShowOverlay={() => handleShowOverlay("Project 3")}
               />
             </div>

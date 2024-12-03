@@ -252,10 +252,10 @@ const OverlayEmail = ({ onClose }) => {
               </label>
             </div>
           </div>
-          <div className="mb-4">
+          <div className="relative mb-4">
             <label
               htmlFor="message"
-              className="text-[#9ca7b6] font-medium mb-2 relative top-10 left-5 cursor-auto pointer-events-none z-10"
+              className="text-[#9ca7b6] font-medium mb-2 absolute top-3 left-5 md:top-4 md:left-4 cursor-auto pointer-events-none z-10"
             >
               <div ref={messageRef} className="relative w-[150px]">
                 Send a message

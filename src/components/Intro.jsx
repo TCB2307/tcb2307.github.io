@@ -21,6 +21,9 @@ function Intro({ scrollAbout }) {
   const cta = React.useRef();
   const copy01 = React.useRef();
   const copy02 = React.useRef();
+  const tag01 = React.useRef();
+  const tag02 = React.useRef();
+  const tag03 = React.useRef();
   const img01 = React.useRef();
   const img02 = React.useRef();
   const icon = React.useRef();
@@ -153,11 +156,35 @@ function Intro({ scrollAbout }) {
     });
   };
 
+  const handleHoverTag = (ele) => {
+    if (gsap.isTweening(ele.current)) {
+      // Prevent a new animation if the current one is still in progress
+      return;
+    }
+    // Clear previous animations and properties
+    gsap.killTweensOf(ele.current);
+    gsap.set(ele.current, { clearProps: "all" });
+    gsap.to(ele.current, {
+      y: -15,
+      duration: 0.15, // Time for scaling
+    });
+    gsap.to(ele.current, {
+      y: 0,
+      duration: 0.5, // Time for scaling
+      ease: "bounce", // Bouncing effect for the scaling
+      delay: 0.15,
+    });
+  };
+
   // Usage for copy01 and copy02
   const handleHover01 = () => handleHover(copy01);
   const handleHover02 = () => handleHover(copy02);
   const handleLeave01 = () => handleLeave(copy01);
   const handleLeave02 = () => handleLeave(copy02);
+
+  const handleHoverTag01 = () => handleHoverTag(tag01);
+  const handleHoverTag02 = () => handleHoverTag(tag02);
+  const handleHoverTag03 = () => handleHoverTag(tag03);
 
   return (
     <div>
@@ -216,9 +243,17 @@ function Intro({ scrollAbout }) {
               className="flex space-x-4 text-xs pt-3 phone:text-[0.65rem]"
               ref={text}
             >
-              <Button text="WEBSITES" />
-              <Button text="EDMS" />
-              <Button text="ANIMATIONS" />
+              <Button
+                text="WEBSITES"
+                ref={tag01}
+                onMouseEnter={handleHoverTag01}
+              />
+              <Button text="EDMS" ref={tag02} onMouseEnter={handleHoverTag02} />
+              <Button
+                text="ANIMATIONS"
+                ref={tag03}
+                onMouseEnter={handleHoverTag03}
+              />
             </div>
             <div
               className="flex space-x-4 pt-3 w-[180px] h-[60px] btn cursor-pointer"
