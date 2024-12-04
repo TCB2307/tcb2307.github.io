@@ -9,6 +9,7 @@ gsap.registerPlugin(useGSAP);
 
 const Overlay = ({ title, onClose, tools, skill, detail, link }) => {
   const overlay = React.useRef(); // Reference to the overlay container
+  const imgRefs = React.useRef([]); // Create a reference array for all images
 
   const containerImg = React.useRef();
   const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -188,6 +189,37 @@ const Overlay = ({ title, onClose, tools, skill, detail, link }) => {
       { opacity: 0 },
       { opacity: 1, duration: 0.5, ease: "power2.out" }
     );
+    // Animate images if imgRefs is not null
+    if (imgRefs.current && imgRefs.current.length > 0) {
+      gsap.to(imgRefs.current, {
+        opacity: (index) => (index === 1 ? 1 : 0), // Show index 0 and 1, hide others
+        duration: 0.5, // Duration
+        ease: "power2.out",
+        delay: 0.3, // Delay for smoothness
+      });
+      gsap.to(imgRefs.current, {
+        opacity: (index) => (index === 0 || index === 1 ? 1 : 0), // Show index 0 and 1, hide others
+        duration: 0.5, // Duration
+        ease: "power2.out",
+        delay: 0.6, // Delay for smoothness
+      });
+    }
+
+    // Animate videos if videoRefs is not null
+    if (videoRefs.current && videoRefs.current.length > 0) {
+      gsap.to(videoRefs.current, {
+        opacity: (index) => (index === 1 ? 1 : 0), // Show index 0 and 1, hide others
+        duration: 0.5, // Duration
+        ease: "power2.out",
+        delay: 0.3, // Delay for smoothness
+      });
+      gsap.to(videoRefs.current, {
+        opacity: (index) => (index === 0 || index === 1 ? 1 : 0), // Show index 0 and 1, hide others
+        duration: 0.5, // Duration
+        ease: "power2.out",
+        delay: 0.6, // Delay for smoothness
+      });
+    }
   });
 
   const handleClose = () => {
@@ -243,7 +275,8 @@ const Overlay = ({ title, onClose, tools, skill, detail, link }) => {
                   autoPlay={isCurrent} // Auto-play if it's playing
                   loop
                   muted
-                  className={`proj-lg-video:w-[62%] rounded-br-[50px] max-h-[550px] absolute proj-sm:w-[85%] shadow-[5px_3px_5px_0_rgba(0,_0,_0,_0.5)] ${
+                  preload="auto"
+                  className={`opacity-0 proj-lg-video:w-[62%] rounded-br-[50px] max-h-[550px] absolute proj-sm:w-[85%] shadow-[5px_3px_5px_0_rgba(0,_0,_0,_0.5)] ${
                     index === 0 ? "translate-x-[-60px] translate-y-[50px]" : ""
                   } ${index > 1 ? "opacity-0 translate-x-[20px]" : ""}`}
                   style={{
@@ -252,10 +285,12 @@ const Overlay = ({ title, onClose, tools, skill, detail, link }) => {
                 />
               ) : (
                 <img
+                  ref={(el) => (imgRefs.current[index] = el)} // Assign each img to the ref array
                   key={index}
                   src={tool}
                   alt="logo"
-                  className={`w-[90%] max-w-[1100px] aspect-[16/9] rounded-br-[50px] max-h-[550px] absolute proj-sm:w-[85%] shadow-[5px_3px_5px_0_rgba(0,_0,_0,_0.5)] ${
+                  preload="auto"
+                  className={`opacity-0 w-[90%] max-w-[1100px] aspect-[16/9] rounded-br-[50px] max-h-[550px] absolute proj-sm:w-[85%] shadow-[5px_3px_5px_0_rgba(0,_0,_0,_0.5)] ${
                     index === 0 ? "translate-x-[-60px] translate-y-[50px]" : ""
                   } ${index > 1 ? "opacity-0 translate-x-[20px]" : ""}`}
                   style={{

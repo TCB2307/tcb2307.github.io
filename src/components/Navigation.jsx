@@ -1,6 +1,10 @@
 import React from "react";
 import { motion, MotionConfig } from "framer-motion";
-import logo from "../images/logo.svg";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import logo01 from "../images/logo01.png";
+
+gsap.registerPlugin(useGSAP);
 
 export default function Navigation({
   scrollToAbout,
@@ -9,6 +13,37 @@ export default function Navigation({
   scrollToContact,
 }) {
   const [active, setActive] = React.useState("text");
+
+  const tag01 = React.useRef();
+  const tag02 = React.useRef();
+  const tag03 = React.useRef();
+  const tag04 = React.useRef();
+
+  const handleHoverTag = (ele) => {
+    if (gsap.isTweening(ele.current)) {
+      // Prevent a new animation if the current one is still in progress
+      return;
+    }
+    // Clear previous animations and properties
+    gsap.killTweensOf(ele.current);
+    gsap.set(ele.current, { clearProps: "all" });
+    gsap.to(ele.current, {
+      scale: 0.7,
+      duration: 0.15, // Time for scaling
+    });
+    gsap.to(ele.current, {
+      scale: 1,
+      duration: 0.5, // Time for scaling
+      ease: "elastic.out(0.8, 0.3)", // Bouncing effect for the scaling
+      delay: 0.2,
+    });
+  };
+
+  const handleHoverTag01 = () => handleHoverTag(tag01);
+  const handleHoverTag02 = () => handleHoverTag(tag02);
+  const handleHoverTag03 = () => handleHoverTag(tag03);
+  const handleHoverTag04 = () => handleHoverTag(tag04);
+
   return (
     <motion.div
       className="relative h-[90px]"
@@ -25,7 +60,11 @@ export default function Navigation({
     >
       <div className="flex pb-4 pt-[3rem] top-[-2rem] bg-white relative border-b-2 z-[101]">
         <div className="flex w-2/6 items-center">
-          <img src={logo} alt="logo" className="w-10 ml-8 py-[7px] h-[56px]" />
+          <img
+            src={logo01}
+            alt="logo"
+            className="ml-8 py-[7px] h-[56px] cursor-pointer"
+          />
         </div>
         <div className="w-4/6 mr-[8rem] md:mr-10">
           <div className="flex justify-between text-2xl font-semibold text-[#14BECA] md:hidden">
@@ -154,15 +193,16 @@ export default function Navigation({
           }}
           className="absolute h-fit top-[-225px] right-0 z-[100] opacity-0 bg-white overflow-hidden hidden md:flex"
         >
-          <div className="font-extralight text-2xl text-center border-l-[1px] text-[#14BECA]">
+          <div className=" font-light text-2xl text-center border-l-[1px] text-[#14BECA]">
             <div
               className="px-[3rem] pb-5 pt-10 border-b-[1px] cursor-pointer"
               onClick={() => {
                 scrollToAbout();
                 setActive(false);
               }}
+              onMouseEnter={handleHoverTag01}
             >
-              About
+              <div ref={tag01}>About</div>
             </div>
             <div
               className="px-[3rem] py-5 border-b-[1px] cursor-pointer"
@@ -170,8 +210,9 @@ export default function Navigation({
                 scrollToSkill();
                 setActive(false);
               }}
+              onMouseEnter={handleHoverTag02}
             >
-              Skills
+              <div ref={tag02}>Skills</div>
             </div>
             <div
               className="px-[3rem] py-5 border-b-[1px] cursor-pointer"
@@ -179,8 +220,9 @@ export default function Navigation({
                 scrollToProject();
                 setActive(false);
               }}
+              onMouseEnter={handleHoverTag03}
             >
-              Projects
+              <div ref={tag03}>Projects</div>
             </div>
             <div
               className="px-[3rem] py-5 border-b-[1px] cursor-pointer"
@@ -188,8 +230,9 @@ export default function Navigation({
                 scrollToContact();
                 setActive(false);
               }}
+              onMouseEnter={handleHoverTag04}
             >
-              Contact
+              <div ref={tag04}>Contact</div>
             </div>
           </div>
         </motion.div>
