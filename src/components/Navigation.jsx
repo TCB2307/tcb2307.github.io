@@ -7,6 +7,7 @@ import logo01 from "../images/logo01.png";
 gsap.registerPlugin(useGSAP);
 
 export default function Navigation({
+  scrollToIntro,
   scrollToAbout,
   scrollToSkill,
   scrollToProject,
@@ -64,6 +65,7 @@ export default function Navigation({
             src={logo01}
             alt="logo"
             className="ml-8 py-[7px] h-[56px] cursor-pointer"
+            onClick={scrollToIntro}
           />
         </div>
         <div className="w-4/6 mr-[8rem] md:mr-10">

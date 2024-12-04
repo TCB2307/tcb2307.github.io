@@ -15,12 +15,24 @@ gsap.registerPlugin(ScrollToPlugin);
 
 export default function Homepage() {
   const [loadingComplete, setLoadingComplete] = React.useState(false);
+  const introSection = useRef(null); // Create a ref for the About section
   const aboutSection = useRef(null); // Create a ref for the About section
   const skillSection = useRef(null); // Create a ref for the Skill section
   const projectSection = useRef(null); // Create a ref for the Project section
   const contactSection = useRef(null); // Create a ref for the Contact section
 
   // Scroll to About section
+  const scrollToIntro = () => {
+    gsap.to(window, {
+      duration: 0.75,
+      scrollTo: {
+        y: introSection.current, // Target the About section
+        offsetY: 100, // Move the scroll 10px up
+      },
+      ease: "power2.inOut",
+    });
+  };
+
   const scrollToAbout = () => {
     gsap.to(window, {
       duration: 0.75,
@@ -80,13 +92,14 @@ export default function Homepage() {
           {/* Pass scrollToAbout as a prop to Navigation */}
           <div className="sticky top-0 z-50">
             <Navigation
+              scrollToIntro={scrollToIntro}
               scrollToAbout={scrollToAbout}
               scrollToSkill={scrollToSkill}
               scrollToProject={scrollToProject}
               scrollToContact={scrollToContact}
             />
           </div>
-          <Intro scrollAbout={scrollToAbout} />
+          <Intro ref={introSection} scrollAbout={scrollToAbout} />
           <About ref={aboutSection} /> {/* Apply the ref to About component */}
           <Skill ref={skillSection} /> {/* Apply the ref to Skill component */}
           <Work ref={projectSection} />

@@ -13,7 +13,7 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollToPlugin);
 
-function Intro({ scrollAbout }) {
+const Intro = React.forwardRef(({ scrollAbout }, ref) => {
   const type = React.useRef();
   const tag = React.useRef();
   const describe = React.useRef();
@@ -187,7 +187,7 @@ function Intro({ scrollAbout }) {
   const handleHoverTag03 = () => handleHoverTag(tag03);
 
   return (
-    <div>
+    <div ref={ref}>
       <div className="px-12 pt-8 ">
         <div
           className="text-1xl justify-center items-center pt-10 hidden md:flex"
@@ -301,6 +301,6 @@ function Intro({ scrollAbout }) {
       </div>
     </div>
   );
-}
+});
 
 export default Intro;
